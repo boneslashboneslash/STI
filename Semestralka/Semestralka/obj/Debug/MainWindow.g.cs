@@ -107,6 +107,14 @@ namespace Semestralka {
         
         #line 29 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button MaximizeNormalButton;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 30 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button ExitButton_Copy;
         
         #line default
@@ -167,9 +175,18 @@ namespace Semestralka {
             this.dataGrid = ((System.Windows.Controls.DataGrid)(target));
             return;
             case 9:
-            this.ExitButton_Copy = ((System.Windows.Controls.Button)(target));
+            this.MaximizeNormalButton = ((System.Windows.Controls.Button)(target));
             
             #line 29 "..\..\MainWindow.xaml"
+            this.MaximizeNormalButton.Click += new System.Windows.RoutedEventHandler(this.Maximize_Button_Click);
+            
+            #line default
+            #line hidden
+            return;
+            case 10:
+            this.ExitButton_Copy = ((System.Windows.Controls.Button)(target));
+            
+            #line 30 "..\..\MainWindow.xaml"
             this.ExitButton_Copy.Click += new System.Windows.RoutedEventHandler(this.Exit_Button_Click);
             
             #line default
