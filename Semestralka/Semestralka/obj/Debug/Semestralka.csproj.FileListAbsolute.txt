@@ -1,0 +1,29 @@
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\bin\Debug\Semestralka.exe.config
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\Semestralka.csprojResolveAssemblyReference.cache
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\MainWindow.g.cs
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\App.g.cs
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\Semestralka_MarkupCompile.cache
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\Semestralka_MarkupCompile.lref
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\bin\Debug\Semestralka.exe
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\bin\Debug\Semestralka.pdb
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\MainWindow.baml
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\Semestralka.g.resources
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\Semestralka.Properties.Resources.resources
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\Semestralka.csproj.GenerateResource.Cache
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\Semestralka.exe
+e:\users\sulo\documents\visual studio 2015\Projects\Semestralka\Semestralka\obj\Debug\Semestralka.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\Semestralka.exe.config
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\Semestralka.exe
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\Semestralka.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.csprojResolveAssemblyReference.cache
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\MainWindow.g.cs
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\App.g.cs
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka_MarkupCompile.cache
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka_MarkupCompile.lref
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\MainWindow.baml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.g.resources
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.Properties.Resources.resources
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.csproj.GenerateResource.Cache
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.csproj.CoreCompileInputs.cache
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.exe
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.pdb
