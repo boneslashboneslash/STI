@@ -10,73 +10,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="RepositoryGetter.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding>
-                <marker date="1522912904904" expanded="true" signature="7:131" ph="..." />
-                <marker date="1522912904904" expanded="true" signature="160:5624" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="201:5622" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="867:1080" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="1139:1331" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="1344:1399" ph="/* Check if repository exists ... */" />
-                <marker date="1522912904904" expanded="true" signature="1450:1738" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="1478:1587" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="1626:1687" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="1809:1884" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="1933:3411" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="1958:2311" ph="/* Use only files and directories on master branch ... */" />
-                <marker date="1522912904904" expanded="true" signature="2583:3390" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="2747:3106" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="2825:2942" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="2968:3087" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="3176:3375" ph="/* Console.WriteLine(path); ... */" />
-                <marker date="1522912904904" expanded="true" signature="3431:3520" ph="/* Pass date of last visiting this app ... */" />
-                <marker date="1522912904904" expanded="true" signature="3566:4637" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="3591:3679" ph="/* Get all commits for repository ... */" />
-                <marker date="1522912904904" expanded="true" signature="3930:4626" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="4246:4610" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="4464:4591" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="4702:5209" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="5266:5417" ph="{...}" />
-                <marker date="1522912904904" expanded="true" signature="5463:5616" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainRunner.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="29" column="30" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-              <folding>
-                <marker date="1522912636416" expanded="false" signature="6:47" ph="..." />
-                <marker date="1522912636416" expanded="true" signature="74:1830" ph="{...}" />
-                <marker date="1522912636416" expanded="true" signature="81:181" ph="/* Class for testing RepositoryGetter methods, in our case something like controller ... */" />
-                <marker date="1522912636416" expanded="true" signature="216:1828" ph="{...}" />
-                <marker date="1522912636416" expanded="true" signature="401:1822" ph="{...}" />
-                <marker date="1522912636416" expanded="true" signature="1436:1556" ph="/* Octokit methods are async so Wait() is necessary ... */" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>authe</find>
       <find>repositoryc</find>
       <find>Authe</find>
+      <find>filelineNumber</find>
+      <find>writeLine</find>
+      <find>repositoryFilePaths</find>
+      <find>FilesContents</find>
+      <find>FilesChanges</find>
+      <find>lastCommit</find>
+      <find>FileExtension</find>
+      <find>FileExtensions</find>
+      <find>ExtensionsLines</find>
+      <find>getFileContent</find>
+      <find>repositoryCommits</find>
     </findStrings>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6D919A9E-1110-448A-8316-99A9088658C8/bc/c632d262/Task.cs" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
@@ -134,6 +88,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../RepositoryModel/RepositoryModel.sln" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -180,12 +135,18 @@
       <workItem from="1522678736887" duration="4703000" />
       <workItem from="1522739573021" duration="17368000" />
       <workItem from="1522856619924" duration="8382000" />
-      <workItem from="1522909279767" duration="3981000" />
+      <workItem from="1522909279767" duration="4129000" />
+      <workItem from="1522937355768" duration="4207000" />
+      <workItem from="1522996857756" duration="599000" />
+      <workItem from="1523385480908" duration="1917000" />
+      <workItem from="1523431552395" duration="738000" />
+      <workItem from="1523453089139" duration="9304000" />
+      <workItem from="1523540352793" duration="9890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34434000" />
+    <option name="totallyTimeSpent" value="61237000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -198,11 +159,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="62" y="-5" width="1858" height="1085" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.50215286" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -213,7 +173,7 @@
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45983088" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39217758" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.49784714" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -231,7 +191,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -239,34 +201,103 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1522912904904" expanded="true" signature="7:131" ph="..." />
-            <marker date="1522912904904" expanded="true" signature="160:5624" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="201:5622" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="867:1080" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1139:1331" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1344:1399" ph="/* Check if repository exists ... */" />
-            <marker date="1522912904904" expanded="true" signature="1450:1738" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1478:1587" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1626:1687" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1809:1884" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1933:3411" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1958:2311" ph="/* Use only files and directories on master branch ... */" />
-            <marker date="1522912904904" expanded="true" signature="2583:3390" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2747:3106" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2825:2942" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2968:3087" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="3176:3375" ph="/* Console.WriteLine(path); ... */" />
-            <marker date="1522912904904" expanded="true" signature="3431:3520" ph="/* Pass date of last visiting this app ... */" />
-            <marker date="1522912904904" expanded="true" signature="3566:4637" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="3591:3679" ph="/* Get all commits for repository ... */" />
-            <marker date="1522912904904" expanded="true" signature="3930:4626" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4246:4610" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4464:4591" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4702:5209" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="5266:5417" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="5463:5616" ph="{...}" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="46" column="49" lean-forward="false" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1298">
+          <caret line="65" column="14" lean-forward="false" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1276">
+          <caret line="60" column="13" lean-forward="false" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1298">
+          <caret line="65" column="14" lean-forward="false" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="60" column="13" lean-forward="true" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="42" column="46" lean-forward="false" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="42" column="46" lean-forward="true" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="29" column="30" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -274,14 +305,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1100">
           <caret line="51" column="1" lean-forward="false" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
-          <folding>
-            <marker date="1522912636416" expanded="false" signature="6:47" ph="..." />
-            <marker date="1522912636416" expanded="true" signature="74:1830" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="81:181" ph="/* Class for testing RepositoryGetter methods, in our case something like controller ... */" />
-            <marker date="1522912636416" expanded="true" signature="216:1828" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="401:1822" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="1436:1556" ph="/* Octokit methods are async so Wait() is necessary ... */" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -289,34 +313,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1522912904904" expanded="true" signature="7:131" ph="..." />
-            <marker date="1522912904904" expanded="true" signature="160:5624" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="201:5622" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="867:1080" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1139:1331" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1344:1399" ph="/* Check if repository exists ... */" />
-            <marker date="1522912904904" expanded="true" signature="1450:1738" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1478:1587" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1626:1687" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1809:1884" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1933:3411" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1958:2311" ph="/* Use only files and directories on master branch ... */" />
-            <marker date="1522912904904" expanded="true" signature="2583:3390" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2747:3106" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2825:2942" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2968:3087" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="3176:3375" ph="/* Console.WriteLine(path); ... */" />
-            <marker date="1522912904904" expanded="true" signature="3431:3520" ph="/* Pass date of last visiting this app ... */" />
-            <marker date="1522912904904" expanded="true" signature="3566:4637" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="3591:3679" ph="/* Get all commits for repository ... */" />
-            <marker date="1522912904904" expanded="true" signature="3930:4626" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4246:4610" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4464:4591" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4702:5209" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="5266:5417" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="5463:5616" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -324,14 +321,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="858">
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <marker date="1522912636416" expanded="false" signature="6:47" ph="..." />
-            <marker date="1522912636416" expanded="true" signature="74:1830" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="81:181" ph="/* Class for testing RepositoryGetter methods, in our case something like controller ... */" />
-            <marker date="1522912636416" expanded="true" signature="216:1828" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="401:1822" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="1436:1556" ph="/* Octokit methods are async so Wait() is necessary ... */" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -339,34 +329,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1522912904904" expanded="true" signature="7:131" ph="..." />
-            <marker date="1522912904904" expanded="true" signature="160:5624" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="201:5622" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="867:1080" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1139:1331" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1344:1399" ph="/* Check if repository exists ... */" />
-            <marker date="1522912904904" expanded="true" signature="1450:1738" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1478:1587" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1626:1687" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1809:1884" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1933:3411" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1958:2311" ph="/* Use only files and directories on master branch ... */" />
-            <marker date="1522912904904" expanded="true" signature="2583:3390" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2747:3106" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2825:2942" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2968:3087" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="3176:3375" ph="/* Console.WriteLine(path); ... */" />
-            <marker date="1522912904904" expanded="true" signature="3431:3520" ph="/* Pass date of last visiting this app ... */" />
-            <marker date="1522912904904" expanded="true" signature="3566:4637" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="3591:3679" ph="/* Get all commits for repository ... */" />
-            <marker date="1522912904904" expanded="true" signature="3930:4626" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4246:4610" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4464:4591" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4702:5209" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="5266:5417" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="5463:5616" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -380,51 +343,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RepositoryModel/RepositoryGetter.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <marker date="1522912904904" expanded="true" signature="7:131" ph="..." />
-            <marker date="1522912904904" expanded="true" signature="160:5624" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="201:5622" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="867:1080" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1139:1331" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1344:1399" ph="/* Check if repository exists ... */" />
-            <marker date="1522912904904" expanded="true" signature="1450:1738" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1478:1587" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1626:1687" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1809:1884" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1933:3411" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="1958:2311" ph="/* Use only files and directories on master branch ... */" />
-            <marker date="1522912904904" expanded="true" signature="2583:3390" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2747:3106" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2825:2942" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="2968:3087" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="3176:3375" ph="/* Console.WriteLine(path); ... */" />
-            <marker date="1522912904904" expanded="true" signature="3431:3520" ph="/* Pass date of last visiting this app ... */" />
-            <marker date="1522912904904" expanded="true" signature="3566:4637" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="3591:3679" ph="/* Get all commits for repository ... */" />
-            <marker date="1522912904904" expanded="true" signature="3930:4626" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4246:4610" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4464:4591" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="4702:5209" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="5266:5417" ph="{...}" />
-            <marker date="1522912904904" expanded="true" signature="5463:5616" ph="{...}" />
-          </folding>
+        <state relative-caret-position="181">
+          <caret line="94" column="30" lean-forward="false" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RepositoryModel/MainRunner.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="29" column="30" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-          <folding>
-            <marker date="1522912636416" expanded="false" signature="6:47" ph="..." />
-            <marker date="1522912636416" expanded="true" signature="74:1830" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="81:181" ph="/* Class for testing RepositoryGetter methods, in our case something like controller ... */" />
-            <marker date="1522912636416" expanded="true" signature="216:1828" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="401:1822" ph="{...}" />
-            <marker date="1522912636416" expanded="true" signature="1436:1556" ph="/* Octokit methods are async so Wait() is necessary ... */" />
-          </folding>
+        <state relative-caret-position="1034">
+          <caret line="51" column="55" lean-forward="true" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

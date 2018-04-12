@@ -1,8 +1,0 @@
-/home/martin/Documents/STI/RepositoryModel/RepositoryModel/bin/Debug/RepositoryModel.exe
-/home/martin/Documents/STI/RepositoryModel/RepositoryModel/bin/Debug/RepositoryModel.pdb
-/home/martin/Documents/STI/RepositoryModel/RepositoryModel/bin/Debug/Octokit.dll
-/home/martin/Documents/STI/RepositoryModel/RepositoryModel/bin/Debug/Octokit.xml
-/home/martin/Documents/STI/RepositoryModel/RepositoryModel/obj/Debug/RepositoryModel.csprojResolveAssemblyReference.cache
-/home/martin/Documents/STI/RepositoryModel/RepositoryModel/obj/Debug/RepositoryModel.csproj.CoreCompileInputs.cache
-/home/martin/Documents/STI/RepositoryModel/RepositoryModel/obj/Debug/RepositoryModel.exe
-/home/martin/Documents/STI/RepositoryModel/RepositoryModel/obj/Debug/RepositoryModel.pdb
