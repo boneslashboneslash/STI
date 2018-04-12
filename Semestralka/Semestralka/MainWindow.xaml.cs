@@ -33,6 +33,9 @@ namespace Semestralka
             this.Close();
         }
 
-       
+        private void button_export_Click(object sender, RoutedEventArgs e)
+        {
+            Save.ExportFilesToExcel(listSouboru, "C:/TUL/STI/pokus/test.xlsx");
+        }
     }
 }

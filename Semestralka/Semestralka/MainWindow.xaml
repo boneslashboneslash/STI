@@ -17,11 +17,11 @@
             <ColumnDefinition Width="12*"/>
             <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="button" Grid.ColumnSpan="3" Content="GRAF" Margin="0,151,1,56" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
+        <Button x:Name="button_graf" Grid.ColumnSpan="3" Content="GRAF" Margin="0,151,1,56" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
         <Image x:Name="image" Margin="0,151,40,56" Source="Icons/Arrioch-Office-Dock-Color-MS-Excel.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
-        <Button x:Name="button_Copy" Grid.ColumnSpan="3" Content="EXPORT" Margin="-3,207,4,0" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
+        <Button x:Name="button_export" Grid.ColumnSpan="3" Content="EXPORT" Margin="-3,207,4,0" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_export_Click"/>
         <Image x:Name="image_Copy" Margin="0,207,40,0" Source="Icons/Custom-Icon-Design-Pretty-Office-6-Import-export.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
-        <Button x:Name="button_Copy1" Grid.ColumnSpan="3" Content="SAVE" Margin="0,95,2,112" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
+        <Button x:Name="button_save" Grid.ColumnSpan="3" Content="SAVE" Margin="0,95,2,112" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
         <Image x:Name="image_Copy1" Margin="0,95,40,117" Source="Icons/Custom-Icon-Design-Pretty-Office-7-Save.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
         <TextBox x:Name="textBox1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Pecina, Souček, Špetlík" VerticalAlignment="Top" Width="146" Background="{x:Null}" Foreground="White" FontFamily="Century Gothic" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
         <DataGrid x:Name="dataGrid" Margin="58,100,-665,4" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}"/>
