@@ -25,7 +25,12 @@
         <Image x:Name="image_Copy1" Margin="0,95,40,117" Source="Icons/Custom-Icon-Design-Pretty-Office-7-Save.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
         <TextBox x:Name="textBox1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Pecina, Souček, Špetlík" VerticalAlignment="Top" Width="146" Background="{x:Null}" Foreground="White" FontFamily="Century Gothic" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
         <DataGrid x:Name="dataGrid" Margin="58,100,-665,4" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}"/>
-        <Grid Grid.Column="2" Height="100" Margin="57,0,-675,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="#FFD32A2A"/>
+        <Grid Grid.Column="2" Height="100" Margin="57,0,-675,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="#FFD32A2A">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,112.8,0">
+                <StackPanel x:Name="sp_settings" Grid.Column="1" Margin="5,5,5,10" />
+            </ScrollViewer>
+        </Grid>
+
         <Button x:Name="ExitButton_Copy" Content="X" Margin="642,35,-650,192" Background="Black" FontSize="28" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Grid.Column="2" Click="Exit_Button_Click"/>
 
 
