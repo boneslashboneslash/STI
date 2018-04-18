@@ -27,3 +27,7 @@ C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.csproj.Gene
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.csproj.CoreCompileInputs.cache
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.exe
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\EPPlus.dll
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\Octokit.dll
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\EPPlus.xml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\Octokit.xml

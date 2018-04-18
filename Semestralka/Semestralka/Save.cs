@@ -13,7 +13,7 @@ namespace Semestralka
         /// <summary>
         /// Export list of objects to xlsx
         /// </summary>
-        public static void ExportFilesToExcel(List<Soubor> listFiles, string pathToFile, string sheetName = "export")
+        public static void ExportFilesToExcel(List<object> listFiles, string pathToFile, string sheetName = "export")//Soubor
         {
             try
             {
@@ -39,12 +39,12 @@ namespace Semestralka
 
                 foreach (var file in listFiles)
                 {
-                    ws.Cells[rowIndex, columnIndex].Value = file.name;
-                    columnIndex++;
-                    ws.Cells[rowIndex, columnIndex].Value = file.type;
-                    columnIndex++;
-                    ws.Cells[rowIndex, columnIndex].Value = file.date;
-                    columnIndex++;
+                    //ws.Cells[rowIndex, columnIndex].Value = file.name;
+                    //columnIndex++;
+                    //ws.Cells[rowIndex, columnIndex].Value = file.type;
+                    //columnIndex++;
+                    //ws.Cells[rowIndex, columnIndex].Value = file.date;
+                    //columnIndex++;
 
                     rowIndex++; columnIndex = 1;
                 }

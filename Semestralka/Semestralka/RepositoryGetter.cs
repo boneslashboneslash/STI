@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-
+using System.Windows;
 
 namespace RepositoryModel
 {    
@@ -39,6 +39,30 @@ namespace RepositoryModel
              // Set github client
              client = new GitHubClient(new ProductHeaderValue("stiapp"));            
          }
+
+         public static RepositoryGetter CreateNewRepositoryGetter(string url)
+         {
+            // Getting user name and repository name from github url
+            var userNameRepositoryName = RepositoryGetter.parseUrl(url);
+            // Create new repository getter
+            RepositoryGetter getter = new RepositoryGetter(userNameRepositoryName.Item1, userNameRepositoryName.Item2);
+            // Authetification for 5000 request per hour
+            getter.Authentication().Wait();
+            // Testing file extension
+            //fileExt.Add("java");
+            getter.FileExtensions.Add("java");// = fileExt;
+
+            // Check if repository exists, it is not part of contructor, if repository is changed make sure that this method is called
+            var repositoryExists = getter.CheckRepository().Result;
+            if (!repositoryExists)
+            {
+                return null;
+            }
+            else
+            {
+                return getter;
+            }              
+        }
 
          /**
           * Parse url
@@ -88,7 +112,7 @@ namespace RepositoryModel
          {
              try
              {
-                 repository = await client.Repository.Get(UserName, RepoName);
+                 repository = await client.Repository.Get(UserName, RepoName).ConfigureAwait(false);
              }
              catch (NotFoundException)
              {
@@ -103,7 +127,7 @@ namespace RepositoryModel
           */
          public async Task<IReadOnlyList<GitHubCommit>> repositoryCommits()
          {
-             return await client.Repository.Commit.GetAll(UserName, RepoName);
+             return await client.Repository.Commit.GetAll(UserName, RepoName).ConfigureAwait(false);
          }
          
          /** 
@@ -111,7 +135,7 @@ namespace RepositoryModel
           */
          public async Task<IEnumerable<string>> repositoryFilePaths()
          {
-             var files = await client.Git.Tree.GetRecursive (UserName, RepoName, "master"); 
+             var files = await client.Git.Tree.GetRecursive (UserName, RepoName, "master").ConfigureAwait(false); 
              return files.Tree.Select (x => x.Path);
          }
  
@@ -162,7 +186,7 @@ namespace RepositoryModel
                      foreach (GitHubCommitFile file in commit.Result.Files)
                      {
                          // INformation about file in current commit
-                         var version = new string[3];
+                         var version = new string[2];
                          version[0] = file.Changes.ToString(); // Number of file changes
                          version[1] = getFileFromCommit(commit.Result.Files[0].Filename, commit.Result).Result; // File content as string
 
@@ -192,9 +216,9 @@ namespace RepositoryModel
          public async Task<string> getFileFromCommit(string file, GitHubCommit commit)
          {             
              // All contents of repository
-             var contents = await client.Repository.Content.GetAllContentsByRef(UserName,  RepoName, file, commit.Sha);
-             // Searched file
-             var targetFile = contents[0];           
+             var contents = await client.Repository.Content.GetAllContentsByRef(UserName,  RepoName, file, commit.Sha).ConfigureAwait(false);
+            // Searched file
+            var targetFile = contents[0];           
              var currentFileText = targetFile.EncodedContent != null ? 
                  Encoding.UTF8.GetString(Convert.FromBase64String(targetFile.EncodedContent)) :
                  targetFile.Content;

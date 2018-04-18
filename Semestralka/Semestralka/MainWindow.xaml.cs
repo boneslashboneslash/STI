@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
-
+using RepositoryModel;
+using System.Threading;
 
 namespace Semestralka
 {
@@ -22,12 +23,26 @@ namespace Semestralka
     /// </summary>
     public partial class MainWindow : Window
     {
+        //private static RepositoryGetter getter;
+        private static readonly List<string> fileExt = new List<string>();
+
         public MainWindow()
         {
             InitializeComponent();
+            //Sets default properties rows from project settings
+            SettingsHandler settingshandler = new SettingsHandler(sp_settings);
+
+            RepositoryGetter getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
+            if(getter == null)
+            {
+                System.Windows.MessageBox.Show("repository not found");
+            }
+            else
+            {
+                Runner runner = new Runner(getter);               
+            }
         }
 
-      
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -35,7 +50,12 @@ namespace Semestralka
 
         private void button_export_Click(object sender, RoutedEventArgs e)
         {
-            Save.ExportFilesToExcel(listSouboru, "C:/TUL/STI/pokus/test.xlsx");
+            //Save.ExportFilesToExcel(listSouboru, "C:/TUL/STI/pokus/test.xlsx");
+
+
+
+
+
         }
     }
 }
