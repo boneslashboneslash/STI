@@ -23,7 +23,7 @@ namespace Semestralka
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private static RepositoryGetter getter;
+        private static RepositoryGetter getter;
         private static readonly List<string> fileExt = new List<string>();
 
         public MainWindow()
@@ -32,15 +32,21 @@ namespace Semestralka
             //Sets default properties rows from project settings
             SettingsHandler settingshandler = new SettingsHandler(sp_settings);
 
-            RepositoryGetter getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
+            getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
             if(getter == null)
             {
                 System.Windows.MessageBox.Show("repository not found");
+                settingshandler.setUrlTB("");
             }
             else
             {
-                Runner runner = new Runner(getter);               
+                Runner runner = new Runner(getter);     
             }
+        }
+
+        public void datagridshw()
+        {
+            dataGrid.ItemsSource = getter.FilesChanges;
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)

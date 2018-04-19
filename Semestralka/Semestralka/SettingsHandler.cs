@@ -98,11 +98,27 @@ namespace Semestralka
         }
 
         /// <summary>
+        /// Setter urlTB text
+        /// </summary>
+        public void setUrlTB(string text)
+        {
+            urlTB.Text = text;
+        }
+
+        /// <summary>
         /// Getter storageTB text
         /// </summary>
         public string getStorageTB()
         {
             return storageTB.Text;
+        }
+
+        /// <summary>
+        /// Setter storageTB text
+        /// </summary>
+        public void setStorageTB(string text)
+        {
+            storageTB.Text = text;
         }
 
         /// <summary>
@@ -113,6 +129,11 @@ namespace Semestralka
             try
             {
                 Semestralka.Properties.Settings.Default.Save();
+                //FrameworkElement feSource = e.Source as FrameworkElement;
+                //if(feSource.Name.Equals("url_TextBox"))
+                //{
+
+                //}
             }
             catch
             {
