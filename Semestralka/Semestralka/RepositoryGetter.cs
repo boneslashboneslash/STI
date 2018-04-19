@@ -28,7 +28,7 @@ namespace RepositoryModel
 
          private Repository repository { get; set; }
          
-         private readonly IDictionary<string, List<string[]>> FilesChanges = new Dictionary<string, List<string[]>>();
+         public IDictionary<string, List<string[]>> FilesChanges = new Dictionary<string, List<string[]>>();
          
          
       
@@ -186,9 +186,10 @@ namespace RepositoryModel
                      foreach (GitHubCommitFile file in commit.Result.Files)
                      {
                          // INformation about file in current commit
-                         var version = new string[2];
+                         var version = new string[3];
                          version[0] = file.Changes.ToString(); // Number of file changes
                          version[1] = getFileFromCommit(commit.Result.Files[0].Filename, commit.Result).Result; // File content as string
+                         version[2] = commit.Result.Commit.Author.Date.ToString(); //date of commit
 
                          // Create new item in dictionary
                          if (FilesChanges.ContainsKey(file.Filename))
@@ -205,6 +206,8 @@ namespace RepositoryModel
                      }                     
                  }
              }
+
+             filterDict();
              return FilesChanges;
          }
 
@@ -261,5 +264,32 @@ namespace RepositoryModel
             var basicAuth = new Credentials("stiapp", "pecinasoučekšpetlík"); 
             client.Credentials = basicAuth;     
          }
+
+        /**
+          * filter suffixes
+          * 
+          */
+        public void filterDict()
+        {
+            IDictionary<string, List<string[]>> filteredDict = new Dictionary<string, List<string[]>>();
+            bool found = false;
+            foreach (var unfilteredItem in FilesChanges)
+            {
+                found = false;
+                foreach (var filter in FileExtensions)
+                {
+                    if (unfilteredItem.Key.Contains(filter))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found == true)
+                {
+                    filteredDict.Add(unfilteredItem);
+                }
+            }
+            FilesChanges = filteredDict;
+        }
     }
 }

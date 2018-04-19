@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace Semestralka
 {
@@ -30,7 +32,9 @@ namespace Semestralka
             {
                 // Call our onTick function.
                 onTick?.Invoke(getter);
-
+                //MainWindow wnd = (MainWindow)Application.Current.MainWindow;
+                //wnd.datagridshw();
+                
                 // Wait to repeat again.
                 if (interval > TimeSpan.Zero)
                     await Task.Delay(interval, token).ConfigureAwait(false);
@@ -41,6 +45,13 @@ namespace Semestralka
         {
             // TODO: Your code here
             var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
+
+            Application.Current.Dispatcher.Invoke(new Action(() => {
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.dataGrid.ItemsSource = GitFile.convertor(filesExtensions);
+            }));
         }
+
+        
     }
 }
