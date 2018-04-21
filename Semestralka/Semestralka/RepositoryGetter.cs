@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Threading.Tasks;
 using Octokit;
@@ -6,7 +6,10 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Windows;
 
 namespace RepositoryModel
@@ -22,15 +25,13 @@ namespace RepositoryModel
 
          // File extensions 
          public List<string> FileExtensions { get; set; } = new List<string>();
-         
-         
+           
          private readonly IDictionary<string, int>  ExtensionsLines = new Dictionary<string, int>();
 
          private Repository repository { get; set; }
          
          public IDictionary<string, List<string[]>> FilesChanges = new Dictionary<string, List<string[]>>();
-         
-         
+              
       
          public RepositoryGetter(string userName, string repoName)
          {
@@ -185,12 +186,31 @@ namespace RepositoryModel
                  {
                      foreach (GitHubCommitFile file in commit.Result.Files)
                      {
-                         // INformation about file in current commit
-                         var version = new string[3];
-                         version[0] = file.Changes.ToString(); // Number of file changes
-                         version[1] = getFileFromCommit(commit.Result.Files[0].Filename, commit.Result).Result; // File content as string
-                         version[2] = commit.Result.Commit.Author.Date.ToString(); //date of commit
+                         // Information about file in current commit
+                         var version = new string[6];
+                     
+                         string url = file.ContentsUrl.Split(new[] { "/contents/" }, StringSplitOptions.None)[1];
+                         string[] fileData = url.Split(new[] { "?ref=" }, StringSplitOptions.None);
 
+                         // Save information about type of file
+                         if ( isFileBinary(fileData, commit.Result).Result)
+                         {
+                             version[1] = "binary"; 
+                         }
+                         else
+                         {
+                             version[1] = "text";
+                         }
+                                     
+                         version[0] = file.Changes.ToString(); // Number of file changes
+                         version[2] = commit.Result.Commit.Author.Date.ToString(); //date of commit 
+                         version[3] = commit.Result.Sha;
+                         // Save file name
+                         version[4] = fileData[0];
+                         // Save file request for deleted or renamed files
+                         version[5] = fileData[1];
+
+                         
                          // Create new item in dictionary
                          if (FilesChanges.ContainsKey(file.Filename))
                          {
@@ -202,31 +222,138 @@ namespace RepositoryModel
                              var fileVersions = new List<string[]>();
                              fileVersions.Add(version);
                              FilesChanges.Add(file.Filename, fileVersions);
-                         }
+                         }      
                      }                     
                  }
              }
-
-             filterDict();
              return FilesChanges;
          }
+         
+         /**
+          * Check if file is binary
+          */
+         public async Task<bool> isFileBinary(string[] fileData, GitHubCommit commit)
+         {           
+             IReadOnlyList<RepositoryContent> contents;
+                                 
+             try
+             {
+                 // Check if file is binary
+                 contents = await client.Repository.Content
+                     .GetAllContentsByRef(UserName, RepoName, fileData[0], commit.Sha).ConfigureAwait(false);
+                 var targetFile = contents[0];
+    
+                 // Download file
+                 string con;
+                 using (var wc = new WebClient())
+                     con = wc.DownloadString(targetFile.DownloadUrl);
 
+                 // Check if file is binary
+                 for (int i = 1; i < 512 && i < con.Length; i++)
+                 {
+                     if (con[i] == 0x00 && con[i - 1] == 0x00)
+                     {
+                         return true;
+                     }
+                 }
+                 
+             }
+             catch
+             {   // Chck if file is binary for deleted or renamed files
+                 contents = await client.Repository.Content
+                     .GetAllContentsByRef(UserName, RepoName, fileData[0], fileData[1]).ConfigureAwait(false);
+                 var targetFile = contents[0];
+ 
+                 string con;
+                 using (var wc = new WebClient())
+                     con = wc.DownloadString(targetFile.DownloadUrl);
+
+                 // Check if file is binary
+                 for (int i = 1; i < 512 && i < con.Length; i++)
+                 {
+                     if (con[i] == 0x00 && con[i - 1] == 0x00)
+                     {
+                         return true;
+                     }
+                 }
+             }
+             return false;
+         }
+         
+         /**
+         * Save text file
+         */
+         public async Task saveBinaryFile(string fileName, string fileRequest, string fileDestination, string commitSha)
+         {
+             IReadOnlyList<RepositoryContent> contents;
+             byte[] binaryContent;
+                                 
+             try
+             {
+                 // File content
+                 contents = await client.Repository.Content
+                     .GetAllContentsByRef(UserName, RepoName, fileName, commitSha).ConfigureAwait(false);
+                 var targetFile = contents[0];
+                 binaryContent = new WebClient().DownloadData(targetFile.DownloadUrl);
+
+             }
+             catch
+             {   // File content for deleted or renamed files during app run
+                 contents = await client.Repository.Content
+                     .GetAllContentsByRef(UserName, RepoName, fileName, fileRequest).ConfigureAwait(false);
+                 var targetFile = contents[0];
+                 binaryContent = new WebClient().DownloadData(targetFile.DownloadUrl);
+             }
+             
+             // Create directory if doesn't exists
+             FileInfo fi = new FileInfo(fileDestination);
+             if (!fi.Directory.Exists) 
+             { 
+                 Directory.CreateDirectory(fi.DirectoryName); 
+             } 
+             // Write bytes to file
+             File.WriteAllBytes(fileDestination, binaryContent); 
+         }
 
          /**
-         * Getting file content from file name (file path)
-         * return string (text in UTF-8)
+         * Save text file
          */
-         public async Task<string> getFileFromCommit(string file, GitHubCommit commit)
-         {             
-             // All contents of repository
-             var contents = await client.Repository.Content.GetAllContentsByRef(UserName,  RepoName, file, commit.Sha).ConfigureAwait(false);
-            // Searched file
-            var targetFile = contents[0];           
-             var currentFileText = targetFile.EncodedContent != null ? 
-                 Encoding.UTF8.GetString(Convert.FromBase64String(targetFile.EncodedContent)) :
-                 targetFile.Content;
+         public async Task saveTextFile(string fileName, string fileRequest, string fileDestination, string commitSha)
+         {       
+             IReadOnlyList<RepositoryContent> contents;
+             var fileContent = "";
+             
+             try
+             {
+                 // File content
+                 contents = await client.Repository.Content
+                     .GetAllContentsByRef(UserName, RepoName, fileName, commitSha).ConfigureAwait(false);
 
-             return currentFileText;
+                 var targetFile = contents[0];
+                 fileContent = targetFile.EncodedContent != null
+                     ? Encoding.UTF8.GetString(Convert.FromBase64String(targetFile.EncodedContent))
+                     : targetFile.Content; 
+                 
+             }
+             catch
+             {   // File content for deleted or renamed files during app run
+                 contents = await client.Repository.Content
+                     .GetAllContentsByRef(UserName, RepoName, fileName, fileRequest).ConfigureAwait(false);
+                 var targetFile = contents[0];
+                 fileContent = targetFile.EncodedContent != null
+                         ? Encoding.UTF8.GetString(Convert.FromBase64String(targetFile.EncodedContent))
+                         : targetFile.Content; 
+                     
+             }
+
+             // Create directory if doesn't exists
+             FileInfo fi = new FileInfo(fileDestination);          
+             if (!fi.Directory.Exists) 
+             { 
+                 Directory.CreateDirectory(fi.DirectoryName); 
+             }   
+             // Write to file
+             File.WriteAllText(fileDestination, fileContent); 
          }
 
          /**
@@ -247,9 +374,41 @@ namespace RepositoryModel
          }
          
          /**
-          * File number of lines
-          * return int
+          * Save files
+          * return void
           */
+         public void SaveFile(string targetDirectory, IDictionary<string, List<string[]>> filesPath)
+         {
+             // Go through all files -> same dictionary structure like FilesChanges
+             foreach (KeyValuePair<string, List<string[]>> entry in filesPath)
+             {
+                 // File path from repository
+                 var path = entry.Key;
+                 // Commit identification
+                 var commitSha = entry.Value[0][3];
+                 // File name
+                 var fileName = entry.Value[0][4];
+                 // File request - for files that were deleted or renamed during the program run
+                 var fileRequest = entry.Value[0][5];
+                 // File destination
+                 var targetFile = targetDirectory + "/" + path;
+                 
+                 if (entry.Value[0][1] == "binary")
+                 {
+                     // Save binary files
+                     saveBinaryFile(fileName, fileRequest, targetFile, commitSha).Wait();
+                 }
+                 else
+                 {   // Save text files
+                     saveTextFile(fileName, fileRequest, targetFile, commitSha).Wait();
+                 }       
+             }
+         }       
+         
+         /**
+         * File number of lines
+         * return int
+         */
          private int FileLineNumber(string filePath)
          {
              var fileContent = getFileContent(filePath).Result;         
@@ -261,35 +420,35 @@ namespace RepositoryModel
           */
          public async Task Authentication()
          {          
-            var basicAuth = new Credentials("stiapp", "pecinasoučekšpetlík"); 
-            client.Credentials = basicAuth;     
+             var basicAuth = new Credentials("stiapp", "pecinasoučekšpetlík"); 
+             client.Credentials = basicAuth;     
          }
 
-        /**
-          * filter suffixes
-          * 
-          */
-        public void filterDict()
-        {
-            IDictionary<string, List<string[]>> filteredDict = new Dictionary<string, List<string[]>>();
-            bool found = false;
-            foreach (var unfilteredItem in FilesChanges)
-            {
-                found = false;
-                foreach (var filter in FileExtensions)
-                {
-                    if (unfilteredItem.Key.Contains(filter))
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-                if (found == true)
-                {
-                    filteredDict.Add(unfilteredItem);
-                }
-            }
-            FilesChanges = filteredDict;
-        }
-    }
+         /**
+           * filter suffixes
+           * 
+           */
+         public void filterDict()
+         {
+             IDictionary<string, List<string[]>> filteredDict = new Dictionary<string, List<string[]>>();
+             bool found = false;
+             foreach (var unfilteredItem in FilesChanges)
+             {
+                 found = false;
+                 foreach (var filter in FileExtensions)
+                 {
+                     if (unfilteredItem.Key.Contains(filter))
+                     {
+                         found = true;
+                         break;
+                     }
+                 }
+                 if (found)
+                 {
+                     filteredDict.Add(unfilteredItem);
+                 }
+             }
+             FilesChanges = filteredDict;
+         }       
+     }
 }
