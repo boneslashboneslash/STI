@@ -21,7 +21,7 @@
         <Image x:Name="image" Margin="0,151,40,56" Source="Icons/Arrioch-Office-Dock-Color-MS-Excel.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
         <Button x:Name="button_export" Grid.ColumnSpan="3" Content="EXPORT" Margin="-3,207,4,0" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_export_Click"/>
         <Image x:Name="image_Copy" Margin="0,207,40,0" Source="Icons/Custom-Icon-Design-Pretty-Office-6-Import-export.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
-        <Button x:Name="button_save" Grid.ColumnSpan="3" Content="SAVE" Margin="0,95,2,112" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
+        <Button x:Name="button_save" Grid.ColumnSpan="3" Content="SAVE" Margin="0,95,2,112" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_save_Click"/>
         <Image x:Name="image_Copy1" Margin="0,95,40,117" Source="Icons/Custom-Icon-Design-Pretty-Office-7-Save.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
         <TextBox x:Name="textBox1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Pecina, Souček, Špetlík" VerticalAlignment="Top" Width="146" Background="{x:Null}" Foreground="White" FontFamily="Century Gothic" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
         <DataGrid x:Name="dataGrid" Margin="58,100,-665,4" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}"/>
@@ -32,6 +32,8 @@
         </Grid>
 
         <Button x:Name="ExitButton_Copy" Content="X" Margin="642,35,-650,192" Background="Black" FontSize="28" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Grid.Column="2" Click="Exit_Button_Click"/>
+        <Ellipse x:Name="ellipse_net_staus" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="22" Margin="10,35,0,0" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="21" RenderTransformOrigin="1.746,0.258"/>
+        <Label Content="Status" Foreground="White" FontSize="15" HorizontalAlignment="Center" Margin="52,35,33,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="75" Height="35"/>
 
 
 

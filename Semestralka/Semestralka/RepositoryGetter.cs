@@ -203,7 +203,7 @@ namespace RepositoryModel
                          }
                                      
                          version[0] = file.Changes.ToString(); // Number of file changes
-                         version[2] = commit.Result.Commit.Author.Date.ToString(); //date of commit 
+                         version[2] = commit.Result.Commit.Author.Date.ToString("dd.MM.yyyy HH:mm:ss"); //date of commit 
                          version[3] = commit.Result.Sha;
                          // Save file name
                          version[4] = fileData[0];
@@ -384,6 +384,7 @@ namespace RepositoryModel
              {
                  // File path from repository
                  var path = entry.Key;
+                 path = path.Replace("/","\\");
                  // Commit identification
                  var commitSha = entry.Value[0][3];
                  // File name
@@ -391,7 +392,7 @@ namespace RepositoryModel
                  // File request - for files that were deleted or renamed during the program run
                  var fileRequest = entry.Value[0][5];
                  // File destination
-                 var targetFile = targetDirectory + "/" + path;
+                 var targetFile = targetDirectory + "\\" + path;
                  
                  if (entry.Value[0][1] == "binary")
                  {

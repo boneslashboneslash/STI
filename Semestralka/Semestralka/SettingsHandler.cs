@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -129,15 +130,21 @@ namespace Semestralka
             try
             {
                 Semestralka.Properties.Settings.Default.Save();
-                //FrameworkElement feSource = e.Source as FrameworkElement;
-                //if(feSource.Name.Equals("url_TextBox"))
-                //{
+                var textBox = (sender as TextBox);
 
-                //}
+                if (textBox.Name.Equals("storage_TextBox"))
+                {
+                    // get the file attributes for file or directory
+                    FileAttributes attr = File.GetAttributes(textBox.Text);
+
+                    //detect whether its a directory or file
+                    if ((attr & FileAttributes.Directory) != FileAttributes.Directory)
+                        MessageBox.Show("Its a file");                       
+                }
             }
             catch
             {
-                MessageBox.Show("Error saving changes in settings!");
+                MessageBox.Show("Error directory!");
             }
         }
     }
