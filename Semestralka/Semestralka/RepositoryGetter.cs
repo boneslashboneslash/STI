@@ -23,16 +23,22 @@ namespace RepositoryModel
          public string UserName { get;}
          public string RepoName { get;}
 
-         // File extensions 
+         // List of all available file extensions 
          public List<string> FileExtensions { get; set; } = new List<string>();
-           
-         private readonly IDictionary<string, int>  ExtensionsLines = new Dictionary<string, int>();
-
-         private Repository repository { get; set; }
          
+         // Repository
+         private Repository repository { get; set; }
+           
+         // Number of lines for file extensions (suffix), currently only .java
+         private readonly IDictionary<string, int>  ExtensionsLines = new Dictionary<string, int>();
+         
+         // Files changed during app run
          public IDictionary<string, List<string[]>> FilesChanges = new Dictionary<string, List<string[]>>();
               
-      
+         /**
+          * Constructor
+          * params: user name adn repository name
+          */
          public RepositoryGetter(string userName, string repoName)
          {
              UserName = userName;
@@ -40,7 +46,11 @@ namespace RepositoryModel
              // Set github client
              client = new GitHubClient(new ProductHeaderValue("stiapp"));            
          }
-
+         
+         /**
+          * Create new repository getter with all neccessary methods
+          * 
+          */
          public static RepositoryGetter CreateNewRepositoryGetter(string url)
          {
             // Getting user name and repository name from github url
@@ -55,15 +65,8 @@ namespace RepositoryModel
 
             // Check if repository exists, it is not part of contructor, if repository is changed make sure that this method is called
             var repositoryExists = getter.CheckRepository().Result;
-            if (!repositoryExists)
-            {
-                return null;
-            }
-            else
-            {
-                return getter;
-            }              
-        }
+            return !repositoryExists ? null : getter;
+         }
 
          /**
           * Parse url
@@ -90,8 +93,9 @@ namespace RepositoryModel
                      break;
                  }
              }
+
+             return ids.Count != 2 ? Tuple.Create("", "") : Tuple.Create(ids[0].TrimEnd('/'), ids[1].TrimEnd('/'));
              // Tuple (user name, repository name)
-             return Tuple.Create(ids[0].TrimEnd('/'), ids[1].TrimEnd('/'));
          }
          
          /**
@@ -100,7 +104,7 @@ namespace RepositoryModel
           */
          private string getFileExtension(string fileName)
          {
-             int lastIndex = fileName.LastIndexOf('.');
+             var lastIndex = fileName.LastIndexOf('.');
              return fileName.Substring(lastIndex + 1);
          }
 
@@ -115,7 +119,7 @@ namespace RepositoryModel
              {
                  repository = await client.Repository.Get(UserName, RepoName).ConfigureAwait(false);
              }
-             catch (NotFoundException)
+             catch
              {
                  return false;
              }          
@@ -147,10 +151,12 @@ namespace RepositoryModel
           */
          public async Task<IDictionary<string, int>> FileExtensionsLinesNumber()
          {
+             // Loop through all repository files (as path)
              foreach (var path in repositoryFilePaths().Result)
              {
-                 // Count file number of lines
+                 // Get file extension (suffix)
                  var ext = getFileExtension(path);
+                 // Add suffix to list of all extensions and add number of lines for selected path
                  if (FileExtensions.Contains(ext))
                  {
                      if (ExtensionsLines.ContainsKey(ext))
@@ -189,8 +195,8 @@ namespace RepositoryModel
                          // Information about file in current commit
                          var version = new string[6];
                      
-                         string url = file.ContentsUrl.Split(new[] { "/contents/" }, StringSplitOptions.None)[1];
-                         string[] fileData = url.Split(new[] { "?ref=" }, StringSplitOptions.None);
+                         var url = file.ContentsUrl.Split(new[] { "/contents/" }, StringSplitOptions.None)[1];
+                         var fileData = url.Split(new[] { "?ref=" }, StringSplitOptions.None);
 
                          // Save information about type of file
                          if ( isFileBinary(fileData, commit.Result).Result)
@@ -203,7 +209,8 @@ namespace RepositoryModel
                          }
                                      
                          version[0] = file.Changes.ToString(); // Number of file changes
-                         version[2] = commit.Result.Commit.Author.Date.ToString("dd.MM.yyyy HH:mm:ss"); //date of commit 
+                         version[2] = commit.Result.Commit.Author.Date.ToString("dd.MM.yyyy HH:mm:ss"); // Date of commit 
+                         // Commit identificator
                          version[3] = commit.Result.Sha;
                          // Save file name
                          version[4] = fileData[0];
@@ -230,7 +237,8 @@ namespace RepositoryModel
          }
          
          /**
-          * Check if file is binary
+          * Check if file is binary or not
+          * return bool
           */
          public async Task<bool> isFileBinary(string[] fileData, GitHubCommit commit)
          {           
@@ -281,8 +289,9 @@ namespace RepositoryModel
          }
          
          /**
-         * Save text file
-         */
+          * Save text file
+          * return void
+          */
          public async Task saveBinaryFile(string fileName, string fileRequest, string fileDestination, string commitSha)
          {
              IReadOnlyList<RepositoryContent> contents;
@@ -316,8 +325,9 @@ namespace RepositoryModel
          }
 
          /**
-         * Save text file
-         */
+          * Save text file
+          * return void
+          */
          public async Task saveTextFile(string fileName, string fileRequest, string fileDestination, string commitSha)
          {       
              IReadOnlyList<RepositoryContent> contents;
@@ -374,17 +384,19 @@ namespace RepositoryModel
          }
          
          /**
-          * Save files
+          * Save files - text file or binary
           * return void
           */
          public void SaveFile(string targetDirectory, IDictionary<string, List<string[]>> filesPath)
          {
+             if (!Directory.Exists(targetDirectory)) return;
              // Go through all files -> same dictionary structure like FilesChanges
              foreach (KeyValuePair<string, List<string[]>> entry in filesPath)
              {
                  // File path from repository
                  var path = entry.Key;
                  path = path.Replace("/","\\");
+                 
                  // Commit identification
                  var commitSha = entry.Value[0][3];
                  // File name
@@ -393,16 +405,17 @@ namespace RepositoryModel
                  var fileRequest = entry.Value[0][5];
                  // File destination
                  var targetFile = targetDirectory + "\\" + path;
-                 
+
                  if (entry.Value[0][1] == "binary")
                  {
                      // Save binary files
                      saveBinaryFile(fileName, fileRequest, targetFile, commitSha).Wait();
                  }
                  else
-                 {   // Save text files
+                 {
+                     // Save text files
                      saveTextFile(fileName, fileRequest, targetFile, commitSha).Wait();
-                 }       
+                 }
              }
          }       
          
@@ -426,8 +439,8 @@ namespace RepositoryModel
          }
 
          /**
-           * filter suffixes
-           * 
+           * Filter suffixes
+           * return void
            */
          public void filterDict()
          {
