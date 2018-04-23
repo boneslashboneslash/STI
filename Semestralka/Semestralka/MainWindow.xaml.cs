@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using RepositoryModel;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace Semestralka
 {
@@ -25,12 +26,31 @@ namespace Semestralka
     {
         private static RepositoryGetter getter;
         private static readonly List<string> fileExt = new List<string>();
+        SettingsHandler settingshandler = null;
+
+        [DllImport("wininet.dll")]
+        private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
+
+        private static bool IsConnectedToInternet()
+        {
+            int Desc;
+            return InternetGetConnectedState(out Desc, 0);
+        }
 
         public MainWindow()
         {
             InitializeComponent();
             //Sets default properties rows from project settings
-            SettingsHandler settingshandler = new SettingsHandler(sp_settings);
+            settingshandler = new SettingsHandler(sp_settings);
+
+            //TODO:async loop
+            int Desc;
+            if (InternetGetConnectedState(out Desc, 0))
+                ellipse_net_staus.Fill = System.Windows.Media.Brushes.Green;
+            else
+                ellipse_net_staus.Fill = System.Windows.Media.Brushes.Red;
+
+
 
             getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
             if(getter == null)
@@ -43,12 +63,7 @@ namespace Semestralka
                 Runner runner = new Runner(getter);     
             }
         }
-
-        public void datagridshw()
-        {
-            dataGrid.ItemsSource = getter.FilesChanges;
-        }
-
+        
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -56,12 +71,13 @@ namespace Semestralka
 
         private void button_export_Click(object sender, RoutedEventArgs e)
         {
-            //Save.ExportFilesToExcel(listSouboru, "C:/TUL/STI/pokus/test.xlsx");
+            
+            Save.ExportFilesToExcel(dataGrid.ItemsSource.Cast<GitFile>().ToList(), settingshandler.getStorageTB()); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
+        }
 
-
-
-
-
+        private void button_save_Click(object sender, RoutedEventArgs e)
+        {
+            getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
         }
     }
 }

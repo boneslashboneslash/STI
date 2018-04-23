@@ -26,7 +26,7 @@ namespace Semestralka
           * convert dict to GitFile obj
           * return List<GitFile>
           */
-        public static List<GitFile> convertor(IDictionary<string, List<string[]>> dict)
+        public static List<GitFile> convertorToList(IDictionary<string, List<string[]>> dict)
         {
             List<GitFile> result = new List<GitFile>();
 
@@ -40,6 +40,17 @@ namespace Semestralka
             }
             return result;
         }
-        
+
+        public static IDictionary<string, List<string[]>> convertorToDict(List<GitFile> list, IDictionary<string, List<string[]>> dictAll)
+        {
+            IDictionary<string, List<string[]>> result = new Dictionary<string, List<string[]>>();
+
+            foreach (var listItem in list)
+            {
+                var dictItem = dictAll.Where(x => x.Key == listItem.name).First();
+                result.Add(dictItem);               
+            }
+            return result;
+        }
     }
 }

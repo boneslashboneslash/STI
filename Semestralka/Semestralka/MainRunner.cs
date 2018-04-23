@@ -70,6 +70,6 @@ namespace RepositoryModel
             //}*
             
             //getter.SaveFile("/home/martin/Desktop/STI", filesExtensions);
-        }
+        //}
     }
 }
