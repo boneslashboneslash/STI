@@ -12,12 +12,16 @@ namespace Semestralka
 {
     public class Runner
     {
+        public CancellationTokenSource cts = new CancellationTokenSource();
         public Runner(RepositoryGetter getter)
         {
             var dueTime = TimeSpan.FromSeconds(5);
             var interval = TimeSpan.FromSeconds(60);
-            // TODO: Add a CancellationTokenSource and supply the token here instead of None.
-            CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, new CancellationTokenSource().Token, getter);//CancellationToken.None
+
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.dataGrid.ItemsSource = null;
+
+            CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter);//CancellationToken.None
 
         }
 

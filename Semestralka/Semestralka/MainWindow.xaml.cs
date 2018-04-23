@@ -25,6 +25,7 @@ namespace Semestralka
     public partial class MainWindow : Window
     {
         private static RepositoryGetter getter;
+        private static Runner runner = null;
         private static readonly List<string> fileExt = new List<string>();
         SettingsHandler settingshandler = null;
 
@@ -52,15 +53,41 @@ namespace Semestralka
 
 
 
-            getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
-            if(getter == null)
+            //getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
+            //if(getter == null)
+            //{
+            //    System.Windows.MessageBox.Show("repository not found");
+            //    settingshandler.setUrlTB("");
+            //}
+            //else
+            //{
+            //    Runner runner = new Runner(getter);     
+            //}
+            GetterInit(settingshandler.getUrlTB());
+        }
+
+        public static void GetterInit(string url)
+        {
+            getter = RepositoryGetter.CreateNewRepositoryGetter(url);
+            if (getter == null)
             {
                 System.Windows.MessageBox.Show("repository not found");
-                settingshandler.setUrlTB("");
             }
             else
             {
-                Runner runner = new Runner(getter);     
+                if(runner != null)
+                {
+                    runner.cts.Cancel();
+                }
+                try
+                {
+                    runner = new Runner(getter);
+                }
+                catch(Exception ex)
+                {
+                    ex.ToString();
+                }
+                
             }
         }
         
