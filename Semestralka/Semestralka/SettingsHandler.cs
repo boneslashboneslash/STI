@@ -14,6 +14,7 @@ namespace Semestralka
 {
     public class SettingsHandler
     {
+        private string prviousUrl;
         private TextBox urlTB;
         private TextBox storageTB;
         /// <summary>
@@ -75,6 +76,7 @@ namespace Semestralka
                 if (tx.Name == "url_TextBox")
                 {
                     urlTB = tx;
+                    prviousUrl = tx.Text;
                 }
 
                 if (tx.Name == "storage_TextBox")
@@ -127,11 +129,9 @@ namespace Semestralka
         /// </summary>
         void tx_LostFocus(object sender, RoutedEventArgs e)
         {
+            var textBox = (sender as TextBox);
             try
             {
-                Semestralka.Properties.Settings.Default.Save();
-                var textBox = (sender as TextBox);
-
                 if (textBox.Name.Equals("storage_TextBox"))
                 {
                     // get the file attributes for file or directory
@@ -139,13 +139,33 @@ namespace Semestralka
 
                     //detect whether its a directory or file
                     if ((attr & FileAttributes.Directory) != FileAttributes.Directory)
-                        MessageBox.Show("Its a file");                       
+                    {
+                        MessageBox.Show("Its a file");
+                        textBox.Text = "";
+                    }
+                                             
                 }
             }
             catch
             {
+                textBox.Text = "";
                 MessageBox.Show("Error directory!");
             }
+
+            try
+            {               
+                if (textBox.Name.Equals("url_TextBox") && !prviousUrl.Equals(textBox.Text))
+                {
+                    prviousUrl = textBox.Text;
+                    MainWindow.GetterInit(textBox.Text);
+                }              
+            }
+            catch
+            {
+                textBox.Text = "";
+                MessageBox.Show("Error url!");
+            }
+            Semestralka.Properties.Settings.Default.Save();
         }
     }
 }
