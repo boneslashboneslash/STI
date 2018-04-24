@@ -49,6 +49,10 @@ namespace Semestralka
 
         private void OnTick(RepositoryGetter getter, DateTime currentDateTime)
         {
+            Application.Current.Dispatcher.Invoke(new Action(() => {
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.lb_status.Content = "Searching...";
+            }));
             // TODO: Your code here
             //var filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month, 
             //    currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
@@ -56,6 +60,7 @@ namespace Semestralka
             currentDateTime = new DateTime(2016, 4, 19, 20, 22, 12);
 
             Application.Current.Dispatcher.Invoke(new Action(() => {
+
                 MainWindow win = (MainWindow)Application.Current.MainWindow;
                 //win.dataGrid.ItemsSource = GitFile.convertor(filesExtensions);
                 win.dataGrid.ItemsSource = GitFile.convertorToList(filesExtensions).OrderByDescending(x => x.datetime);
@@ -81,6 +86,7 @@ namespace Semestralka
                         }                        
                     }
                 }
+                win.lb_status.Content = "Finished";
             }));
 
         }

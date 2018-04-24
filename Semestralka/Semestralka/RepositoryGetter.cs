@@ -30,7 +30,7 @@ namespace RepositoryModel
          private Repository repository { get; set; }
            
          // Number of lines for file extensions (suffix), currently only .java
-         private readonly IDictionary<string, int>  ExtensionsLines = new Dictionary<string, int>();
+         private IDictionary<string, int>  ExtensionsLines = new Dictionary<string, int>();
          
          // Files changed during app run
          public IDictionary<string, List<string[]>> FilesChanges = new Dictionary<string, List<string[]>>();
@@ -151,8 +151,9 @@ namespace RepositoryModel
           */
          public async Task<IDictionary<string, int>> FileExtensionsLinesNumber()
          {
-             // Loop through all repository files (as path)
-             foreach (var path in repositoryFilePaths().Result)
+            ExtensionsLines = new Dictionary<string, int>();
+            // Loop through all repository files (as path)
+            foreach (var path in repositoryFilePaths().Result)
              {
                  // Get file extension (suffix)
                  var ext = getFileExtension(path);
@@ -373,7 +374,7 @@ namespace RepositoryModel
          public async Task<string> getFileContent(string file)
          {      
              // All contents of repository
-             var contents = await client.Repository.Content.GetAllContentsByRef(UserName,  RepoName, file, "master");
+             var contents = await client.Repository.Content.GetAllContentsByRef(UserName,  RepoName, file, "master").ConfigureAwait(false);
              // Searched file
              var targetFile = contents[0];           
              var currentFileText = targetFile.EncodedContent != null ? 

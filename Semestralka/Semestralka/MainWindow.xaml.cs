@@ -44,14 +44,6 @@ namespace Semestralka
             //Sets default properties rows from project settings
             settingshandler = new SettingsHandler(sp_settings);
 
-            //TODO:async loop
-            int Desc;
-            if (InternetGetConnectedState(out Desc, 0))
-                ellipse_net_staus.Fill = System.Windows.Media.Brushes.Green;
-            else
-                ellipse_net_staus.Fill = System.Windows.Media.Brushes.Red;
-
-
 
             //getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
             //if(getter == null)
@@ -64,6 +56,10 @@ namespace Semestralka
             //    Runner runner = new Runner(getter);     
             //}
             GetterInit(settingshandler.getUrlTB());
+
+            int Desc;
+            if (!InternetGetConnectedState(out Desc, 0))
+                lb_status.Content = "No connection";
         }
 
         public static void GetterInit(string url)
@@ -105,6 +101,11 @@ namespace Semestralka
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
             getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
+        }
+
+        private void button_count_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);     
         }
     }
 }
