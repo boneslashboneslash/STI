@@ -94,8 +94,8 @@ namespace Semestralka
 
         private void button_export_Click(object sender, RoutedEventArgs e)
         {
-            
-            Save.ExportFilesToExcel(dataGrid.ItemsSource.Cast<GitFile>().ToList(), settingshandler.getStorageTB()); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
+
+            Save.ExportFilesToExcel((dataGrid.ItemsSource != null)?dataGrid.ItemsSource.Cast<GitFile>().ToList():null, settingshandler.getStorageTB()); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
         }
 
         private void button_save_Click(object sender, RoutedEventArgs e)
