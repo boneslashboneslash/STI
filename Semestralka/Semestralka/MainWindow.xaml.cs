@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using RepositoryModel;
 using System.Threading;
 using System.Runtime.InteropServices;
+using LiveCharts.Wpf;
 
 namespace Semestralka
 {
@@ -42,8 +43,9 @@ namespace Semestralka
         {
             InitializeComponent();
             //Sets default properties rows from project settings
-            settingshandler = new SettingsHandler(sp_settings);
 
+            settingshandler = new SettingsHandler(sp_settings);
+            
 
             //getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
             //if(getter == null)
@@ -107,5 +109,13 @@ namespace Semestralka
         {
             System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);     
         }
+
+        private void button_graf_Click(object sender, RoutedEventArgs e)
+        {
+            Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(),dataGrid.SelectedItems.Cast<GitFile>().ToList());
+
+        }
+
+
     }
 }

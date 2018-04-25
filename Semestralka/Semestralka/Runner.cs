@@ -20,8 +20,9 @@ namespace Semestralka
 
             MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.dataGrid.ItemsSource = null;
-
+            //Task.Run(() => CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter).Wait());
             CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter);//CancellationToken.None
+            
 
         }
 

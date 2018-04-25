@@ -31,3 +31,14 @@ C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\EPPlus.dll
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\Octokit.dll
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\EPPlus.xml
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\Octokit.xml
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\EPPlus.dll
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\Octokit.dll
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\EPPlus.xml
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\Octokit.xml
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\obj\Debug\App.baml
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.dll
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.Wpf.dll
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.pdb
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.xml
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.Wpf.pdb
+E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.Wpf.xml

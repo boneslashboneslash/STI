@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Semestralka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="531" Width="830" WindowStartupLocation="CenterScreen" Background="#FFF3F3F3" WindowStyle="None" SnapsToDevicePixels="True" ResizeMode="CanResizeWithGrip" AllowsTransparency="True">
-    <Grid Margin="0,0,670,2" Background="#FFD32A2A">
+        Title="MainWindow" Height="531" Width="830" WindowStartupLocation="CenterScreen" Background="#FFF3F3F3" SnapsToDevicePixels="True" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Window.Effect>
+        <DropShadowEffect Color="#FFD32A2A" BlurRadius="10"/>
+    </Window.Effect>
+    <Grid Name ="testicek" Margin="0,0,670,0" Background="#FFD32A2A" Width="160" Height="531">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
             <RowDefinition Height="258*"/>
@@ -17,25 +20,27 @@
             <ColumnDefinition Width="12*"/>
             <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="button_graf" Grid.ColumnSpan="3" Content="GRAF" Margin="0,151,1,56" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
-        <Image x:Name="image" Margin="0,151,40,56" Source="Icons/Arrioch-Office-Dock-Color-MS-Excel.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
-        <Button x:Name="button_export" Grid.ColumnSpan="3" Content="EXPORT" Margin="-3,207,4,0" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_export_Click"/>
-        <Image x:Name="image_Copy" Margin="0,207,40,0" Source="Icons/Custom-Icon-Design-Pretty-Office-6-Import-export.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
-        <Button x:Name="button_count" Grid.ColumnSpan="3" Content="COUNT" Margin="-3,262,4,211.6" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="3" Click="button_count_Click"/>
-        <Button x:Name="button_save" Grid.ColumnSpan="3" Content="SAVE" Margin="0,95,2,112" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_save_Click"/>
-        <Image x:Name="image_Copy1" Margin="0,95,40,117" Source="Icons/Custom-Icon-Design-Pretty-Office-7-Save.ico" RenderTransformOrigin="0.184,-1.359" Grid.RowSpan="2"/>
-        <TextBox x:Name="textBox1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" Text="Pecina, Souček, Špetlík" VerticalAlignment="Top" Width="146" Background="{x:Null}" Foreground="White" FontFamily="Century Gothic" BorderBrush="{x:Null}" Grid.RowSpan="2"/>
-        <DataGrid x:Name="dataGrid" Margin="58,100,-665,4" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}"/>
-        <Grid Grid.Column="2" Height="100" Margin="57,0,-675,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="#FFD32A2A">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,112.8,0">
+        <Button x:Name="button_graf" Content ="Graph"  Grid.ColumnSpan="3" Margin="0,151,1,56" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Width="159" Height="56" Style="{StaticResource MyButton}" Click="button_graf_Click"/>
+        <Image x:Name="image" Source="Arrioch-Office-Dock-Color-MS-Excel.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,162,30,61" Grid.RowSpan="2" />
+
+        <Button x:Name="button_export" Content="Export" Grid.ColumnSpan="3" Margin="-3,207,4,0" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_export_Click" Width="159" Height="56" Style="{StaticResource MyButton}"/>
+        <Image x:Name="image_Copy" Source="Custom-Icon-Design-Pretty-Office-6-Import-export.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,218,30,5" Grid.RowSpan="2"/>
+        <Button x:Name="button_count" Margin="0,0,1,211" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Click="button_count_Click" Width="159" Height="57" Style="{StaticResource MyButton}" Grid.Row="2" Grid.ColumnSpan="3" Content="Count"/>
+        <Button x:Name="button_save" Content ="Save"  Grid.ColumnSpan="3" Margin="0,95,2,112" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_save_Click" Width="158" Height="55" Style="{StaticResource MyButton}"/>
+        <Image x:Name="image_Copy1" Source="Custom-Icon-Design-Pretty-Office-7-Save.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="51" Margin="10,95,30,117" Grid.RowSpan="2"/>
+
+
+        <Grid Grid.Column="2" Height="85" Margin="53,0,-685,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="#FFD32A2A">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,113,0" Width="576">
                 <StackPanel x:Name="sp_settings" Grid.Column="1" Margin="5,5,5,10" />
             </ScrollViewer>
         </Grid>
-
-        <Button x:Name="ExitButton_Copy" Content="X" Margin="642,35,-650,192" Background="Black" FontSize="28" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Grid.Column="2" Click="Exit_Button_Click"/>
         <Label x:Name="lb_status" Content="Status" Foreground="White" FontSize="15" HorizontalAlignment="Center" Margin="29,35,14,0" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="117" Height="35"/>
+        <Label x:Name="label" Content="Pecina, Souček, Špetlík" HorizontalAlignment="Left" Height="30" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="146" Grid.ColumnSpan="3" Foreground="White" FontFamily="Times New Roman" FontSize="14"/>
+        <DataGrid x:Name="dataGrid" Margin="58,100,-675,9" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}" Width="674" Height="422" IsReadOnly="True"/>
+        <Image x:Name="image_Copy2" Source="Oxygen-Icons.org-Oxygen-Apps-accessories-calculator.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,10,30,218" Grid.Row="2"/>
 
-        
+
 
 
 
