@@ -16,7 +16,7 @@ namespace Semestralka
         public Runner(RepositoryGetter getter)
         {
             var dueTime = TimeSpan.FromSeconds(5);
-            var interval = TimeSpan.FromSeconds(60);
+            var interval = TimeSpan.FromSeconds(120);
 
             MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.dataGrid.ItemsSource = null;
@@ -55,7 +55,11 @@ namespace Semestralka
                 win.lb_status.Content = "Searching...";
             }));
             // load backup from file
-            getter.loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(getter.UserName+ "_" + getter.RepoName + ".txt"));
+            if (getter.FilesChanges.Count() == 0)
+            {
+                getter.loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(getter.UserName + "_" + getter.RepoName + ".txt"));
+            }
+            
 
             //var filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month, 
             //    currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
