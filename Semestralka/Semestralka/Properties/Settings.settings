@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="url" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://github.com/martinspetlik/TGH</Value>
+      <Value Profile="(Default)">https://github.com/boneslashboneslash/TEST</Value>
     </Setting>
     <Setting Name="storage" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">C:\TUL\STI</Value>
     </Setting>
   </Settings>
 </SettingsFile>

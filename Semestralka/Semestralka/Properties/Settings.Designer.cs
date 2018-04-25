@@ -25,7 +25,7 @@ namespace Semestralka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/martinspetlik/TGH")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/boneslashboneslash/TEST")]
         public string url {
             get {
                 return ((string)(this["url"]));
@@ -37,7 +37,7 @@ namespace Semestralka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\TUL\\STI")]
         public string storage {
             get {
                 return ((string)(this["storage"]));
