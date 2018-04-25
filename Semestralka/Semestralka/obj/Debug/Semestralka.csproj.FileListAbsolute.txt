@@ -42,3 +42,10 @@ E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\
 E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.xml
 E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.Wpf.pdb
 E:\Users\SULO\Documents\Visual Studio 2015\Projects\Semestralka\Semestralka\bin\Debug\LiveCharts.Wpf.xml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\LiveCharts.dll
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\LiveCharts.Wpf.dll
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\LiveCharts.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\LiveCharts.xml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\LiveCharts.Wpf.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\LiveCharts.Wpf.xml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\App.baml
