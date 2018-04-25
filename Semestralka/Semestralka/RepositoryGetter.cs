@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Windows;
 using Semestralka;
+using System.Threading;
 
 namespace RepositoryModel
 {
@@ -180,6 +181,7 @@ namespace RepositoryModel
          */
         public async Task<IDictionary<string, List<string[]>>> ChangedFiles(DateTime date)
         {
+            
             // Latest commit is first in list commits
             var commits = repositoryCommits().Result;
 

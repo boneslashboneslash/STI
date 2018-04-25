@@ -60,11 +60,10 @@ namespace Semestralka
                 getter.loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(getter.UserName + "_" + getter.RepoName + ".txt"));
             }
             
-
-            //var filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month, 
-            //    currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
-            var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
-            currentDateTime = new DateTime(2016, 4, 19, 20, 22, 12);
+            var filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month, 
+                currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
+            //var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
+            //currentDateTime = new DateTime(2016, 4, 19, 20, 22, 12);
 
             Application.Current.Dispatcher.Invoke(new Action(() => {
 
