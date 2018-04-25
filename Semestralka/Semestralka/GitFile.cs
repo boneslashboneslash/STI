@@ -32,11 +32,11 @@ namespace Semestralka
 
             foreach (var dictItem in dict)
             {
-                foreach(var item in dictItem.Value)
+                foreach (var item in dictItem.Value)
                 {
                     GitFile gf = new GitFile(dictItem.Key, item[2], Int32.Parse(item[0]));
                     result.Add(gf);
-                }         
+                }
             }
             return result;
         }
@@ -48,9 +48,20 @@ namespace Semestralka
             foreach (var listItem in list)
             {
                 var dictItem = dictAll.Where(x => x.Key == listItem.name).First();
-                result.Add(dictItem);               
+                result.Add(dictItem);
             }
             return result;
         }
+
+        //public static List<GitFile> convertFromListString(List<string> listContent)
+        //{
+        //    List<GitFile> result = new List<GitFile>();
+        //    foreach (var line in listContent)
+        //    {
+        //        string[] parts = line.Split('|');
+        //        result.Add(new GitFile(parts[0], parts[1], Int32.Parse(parts[2])));
+        //    }
+        //    return result;
+        //}
     }
 }

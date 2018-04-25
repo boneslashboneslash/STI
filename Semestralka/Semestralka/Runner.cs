@@ -54,7 +54,9 @@ namespace Semestralka
                 MainWindow win = (MainWindow)Application.Current.MainWindow;
                 win.lb_status.Content = "Searching...";
             }));
-            // TODO: Your code here
+            // load backup from file
+            getter.loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(getter.UserName+ "_" + getter.RepoName + ".txt"));
+
             //var filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month, 
             //    currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
             var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
@@ -87,6 +89,8 @@ namespace Semestralka
                         }                        
                     }
                 }
+                //save to file 
+                Save.SaveDatagridContent(getter.UserName + "_" + getter.RepoName+ ".txt", getter.FilesChanges);
                 win.lb_status.Content = "Finished";
             }));
 
