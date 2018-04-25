@@ -55,9 +55,19 @@
   <ItemGroup>
     <Reference Include="EPPlus, Version=4.5.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.4.5.1\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Octokit, Version=0.29.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Octokit.0.29.0\lib\net45\Octokit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -85,6 +95,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GitFile.cs" />
+    <Compile Include="Graph.cs" />
     <Compile Include="MainRunner.cs" />
     <Compile Include="RepositoryGetter.cs" />
     <Compile Include="Runner.cs" />
@@ -145,6 +156,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Nishad2m8-Hologram-Dock-Folder.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Arrioch-Office-Dock-Color-MS-Excel.ico" />
+    <Resource Include="Custom-Icon-Design-Pretty-Office-6-Import-export.ico" />
+    <Resource Include="Custom-Icon-Design-Pretty-Office-7-Save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Oxygen-Icons.org-Oxygen-Apps-accessories-calculator.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
