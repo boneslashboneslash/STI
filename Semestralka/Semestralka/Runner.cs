@@ -38,7 +38,7 @@ namespace Semestralka
             if (dueTime > TimeSpan.Zero)
                 await Task.Delay(dueTime, token).ConfigureAwait(false);
 
-            if (currentDateTime.Equals("01.01.0001 0:00:00") || setActualDate == true)
+            if (currentDateTime.ToString("dd.MM.yyyy HH:mm:ss").Equals("01.01.0001 00:00:00") || setActualDate == true)
             {
                 currentDateTime = DateTime.Now;
             }       
