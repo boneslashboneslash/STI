@@ -88,7 +88,7 @@ namespace Semestralka
                         row = win.dataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
                     }
                     DateTime myDate = DateTime.ParseExact(item.datetime, "dd.MM.yyyy HH:mm:ss",
-                                       System.Globalization.CultureInfo.InvariantCulture);
+                        System.Globalization.CultureInfo.InvariantCulture);
                     if (myDate >= currentDateTime)
                     {
                         try
