@@ -28,7 +28,7 @@
         <Button x:Name="button_count" Margin="0,0,1,211" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Click="button_count_Click" Width="159" Height="57" Style="{StaticResource MyButton}" Grid.Row="2" Grid.ColumnSpan="3" Content="Count"/>
         <Button x:Name="button_save" Content ="Save"  Grid.ColumnSpan="3" Margin="0,95,2,112" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_save_Click" Width="158" Height="55" Style="{StaticResource MyButton}"/>
         <Image x:Name="image_Copy1" Source="Custom-Icon-Design-Pretty-Office-7-Save.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="51" Margin="10,95,30,117" Grid.RowSpan="2"/>
-
+        <Button x:Name="button_refresh" Margin="-1,54.8,2,156.2" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Width="159" Height="57" Style="{StaticResource MyButton}" Grid.Row="2" Grid.ColumnSpan="3" Content="Refresh" Click="button_refresh_Click"/>
 
         <Grid Grid.Column="2" Height="85" Margin="53,0,-685,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="#FFD32A2A">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,113,0" Width="576">

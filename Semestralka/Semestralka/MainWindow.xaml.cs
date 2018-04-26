@@ -79,7 +79,7 @@ namespace Semestralka
                 }
                 try
                 {
-                    runner = new Runner(getter);
+                    runner = new Runner(getter, true);
                 }
                 catch(Exception ex)
                 {
@@ -102,6 +102,33 @@ namespace Semestralka
 
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                dialog.SelectedPath = settingshandler.getStorageTB();
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if(result.ToString() == "OK")
+                {
+                    settingshandler.setStorageTB(dialog.SelectedPath);
+                }   
+            }
+
+
+
+            //// Configure save file dialog box
+            //Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            //dlg.FileName = "Document"; // Default file name
+            //dlg.DefaultExt = ".text"; // Default file extension
+            //dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+
+            //// Show save file dialog box
+            //Nullable<bool> result = dlg.ShowDialog();
+
+            //// Process save file dialog box results
+            //if (result == true)
+            //{
+            //    // Save document
+            //    string filename = dlg.FileName;
+            //}
             getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
         }
 
@@ -116,6 +143,22 @@ namespace Semestralka
 
         }
 
+        private void button_refresh_Click(object sender, RoutedEventArgs e)
+        {
+            if (runner != null)
+            {
+                runner.cts.Cancel();
+            }
+            try
+            {
+                lb_status.Content = "Searching...";
+                runner = new Runner(getter,false);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
 
+        }
     }
 }

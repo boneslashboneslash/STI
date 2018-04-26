@@ -13,27 +13,35 @@ namespace Semestralka
     public class Runner
     {
         public CancellationTokenSource cts = new CancellationTokenSource();
-        public Runner(RepositoryGetter getter)
+        public static DateTime currentDateTime;
+        public Runner(RepositoryGetter getter, bool setActualDate)
         {
             var dueTime = TimeSpan.FromSeconds(5);
-            var interval = TimeSpan.FromSeconds(120);
+            var interval = TimeSpan.FromSeconds(3600);
 
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.dataGrid.ItemsSource = null;
+            if(setActualDate == true)
+            {
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.dataGrid.ItemsSource = null;
+            }
+            
             //Task.Run(() => CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter).Wait());
-            CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter);//CancellationToken.None
+            CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter, setActualDate);//CancellationToken.None
             
 
         }
 
         // The `onTick` method will be called periodically unless cancelled.
-        private static async Task CheckingRepositoryPeriodicAsync(Action<RepositoryGetter, DateTime> onTick, TimeSpan dueTime, TimeSpan interval, CancellationToken token, RepositoryGetter getter)
+        private static async Task CheckingRepositoryPeriodicAsync(Action<RepositoryGetter, DateTime> onTick, TimeSpan dueTime, TimeSpan interval, CancellationToken token, RepositoryGetter getter, bool setActualDate)
         {
             // Initial wait time before we begin the periodic loop.
             if (dueTime > TimeSpan.Zero)
                 await Task.Delay(dueTime, token).ConfigureAwait(false);
 
-            DateTime currentDateTime = DateTime.Now;
+            if (currentDateTime.Equals("01.01.0001 0:00:00") || setActualDate == true)
+            {
+                currentDateTime = DateTime.Now;
+            }       
             // Repeat this loop until cancelled.
             while (!token.IsCancellationRequested)
             {
