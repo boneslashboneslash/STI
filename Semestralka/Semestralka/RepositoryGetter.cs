@@ -213,8 +213,9 @@ namespace RepositoryModel
                         }
 
                         version[0] = file.Changes.ToString(); // Number of file changes
-                        version[2] = commit.Result.Commit.Author.Date.ToString("dd.MM.yyyy HH:mm:ss"); // Date of commit 
-                                                                                                       // Commit identificator
+                        //Date of commmit, commit Identificator
+                        version[2] = commit.Result.Commit.Author.Date.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss");
+
                         version[3] = commit.Result.Sha;
                         // Save file name
                         version[4] = fileData[0];

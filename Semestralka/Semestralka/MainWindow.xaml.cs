@@ -43,7 +43,6 @@ namespace Semestralka
         {
             InitializeComponent();
             //Sets default properties rows from project settings
-
             settingshandler = new SettingsHandler(sp_settings);
             
 
@@ -99,7 +98,7 @@ namespace Semestralka
 
             Save.ExportFilesToExcel((dataGrid.ItemsSource != null)?dataGrid.ItemsSource.Cast<GitFile>().ToList():null, settingshandler.getStorageTB()); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
         }
-
+        
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
             using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
@@ -134,9 +133,15 @@ namespace Semestralka
 
         private void button_count_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);     
+            try
+            {
+                System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);
+            }
+            catch (AggregateException ae)
+            {
+                ae.ToString();
+            }
         }
-
         private void button_graf_Click(object sender, RoutedEventArgs e)
         {
             Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(),dataGrid.SelectedItems.Cast<GitFile>().ToList());
