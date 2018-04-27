@@ -34,7 +34,7 @@ namespace Semestralka
             {
                 foreach (var item in dictItem.Value)
                 {
-                    GitFile gf = new GitFile(dictItem.Key, item[2], Int32.Parse(item[0])); 
+                    GitFile gf = new GitFile(dictItem.Key, item[2], Int32.Parse(item[0])+1); 
                     result.Add(gf);
                 }
             }
