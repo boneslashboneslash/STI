@@ -16,7 +16,7 @@ namespace Semestralka
         public static DateTime currentDateTime;
         public Runner(RepositoryGetter getter, bool setActualDate)
         {
-            var dueTime = TimeSpan.FromSeconds(5);
+            var dueTime = TimeSpan.FromSeconds(1);
             var interval = TimeSpan.FromSeconds(3600);
 
             if(setActualDate == true)

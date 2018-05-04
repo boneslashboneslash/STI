@@ -17,6 +17,10 @@ using RepositoryModel;
 using System.Threading;
 using System.Runtime.InteropServices;
 using LiveCharts.Wpf;
+using System.Net.NetworkInformation;
+using System.Net;
+using System.Windows.Threading;
+
 
 namespace Semestralka
 {
@@ -25,6 +29,7 @@ namespace Semestralka
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         private static RepositoryGetter getter;
         private static Runner runner = null;
         private static readonly List<string> fileExt = new List<string>();
@@ -38,13 +43,12 @@ namespace Semestralka
             int Desc;
             return InternetGetConnectedState(out Desc, 0);
         }
-
         public MainWindow()
         {
             InitializeComponent();
             //Sets default properties rows from project settings
             settingshandler = new SettingsHandler(sp_settings);
-            
+
 
             //getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
             //if(getter == null)
@@ -57,14 +61,15 @@ namespace Semestralka
             //    Runner runner = new Runner(getter);     
             //}
             GetterInit(settingshandler.getUrlTB());
-
             int Desc;
             if (!InternetGetConnectedState(out Desc, 0))
                 lb_status.Content = "No connection";
         }
 
+       
         public static void GetterInit(string url)
         {
+            
             getter = RepositoryGetter.CreateNewRepositoryGetter(url);
             if (getter == null)
             {
@@ -87,7 +92,33 @@ namespace Semestralka
                 
             }
         }
-        
+
+
+public static bool IsInternetAvailable()
+{
+	System.Net.WebClient workstation = new System.Net.WebClient();
+	byte[] data = null;
+ 
+	try
+	{
+		data = workstation.DownloadData("http://www.google.com");// use any address to check connection.
+		if (data != null && data.Length > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	catch
+	{
+		return false;
+	}
+ 
+}
+
+
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -137,33 +168,51 @@ namespace Semestralka
             {
                 System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);
             }
-            catch (AggregateException ae)
-            {
+            catch (Exception ae)
+            { 
+                if(ae is AggregateException || ae is KeyNotFoundException || ae is NullReferenceException)
                 ae.ToString();
             }
+            
+            
+                
+            
         }
         private void button_graf_Click(object sender, RoutedEventArgs e)
         {
-            Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(),dataGrid.SelectedItems.Cast<GitFile>().ToList());
+            try {
+                Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(), dataGrid.SelectedItems.Cast<GitFile>().ToList());
+                    }
+            catch (ArgumentNullException)
+            {
+                System.Windows.MessageBox.Show("Not connected to internet");
+            }
 
         }
 
         private void button_refresh_Click(object sender, RoutedEventArgs e)
         {
-            if (runner != null)
-            {
-                runner.cts.Cancel();
+            bool isNetworkAvailable = IsInternetAvailable();
+            if (isNetworkAvailable)
+            { 
+                if (runner != null)
+                {
+                    runner.cts.Cancel();
+                }
+                try
+                {
+                    lb_status.Content = "Searching...";
+                    runner = new Runner(getter, false);
+                }
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                }
             }
-            try
-            {
-                lb_status.Content = "Searching...";
-                runner = new Runner(getter,false);
-            }
-            catch (Exception ex)
-            {
-                ex.ToString();
-            }
+            else
+            { lb_status.Content = "No connection"; }
 
         }
+      
     }
 }
