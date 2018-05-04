@@ -60,7 +60,7 @@ namespace Semestralka
             //{
             //    Runner runner = new Runner(getter);     
             //}
-            GetterInit(settingshandler.getUrlTB());
+           GetterInit(settingshandler.getUrlTB());
             int Desc;
             if (!InternetGetConnectedState(out Desc, 0))
                 lb_status.Content = "No connection";
@@ -116,7 +116,7 @@ public static bool IsInternetAvailable()
 		return false;
 	}
  
-}
+} 
 
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
@@ -192,8 +192,8 @@ public static bool IsInternetAvailable()
 
         private void button_refresh_Click(object sender, RoutedEventArgs e)
         {
-            bool isNetworkAvailable = IsInternetAvailable();
-            if (isNetworkAvailable)
+           bool isNetworkAvailable = IsInternetAvailable();
+           if (isNetworkAvailable)
             { 
                 if (runner != null)
                 {
@@ -209,7 +209,7 @@ public static bool IsInternetAvailable()
                     ex.ToString();
                 }
             }
-            else
+           else
             { lb_status.Content = "No connection"; }
 
         }
