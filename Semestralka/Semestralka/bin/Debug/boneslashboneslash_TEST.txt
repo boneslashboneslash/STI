@@ -65,3 +65,17 @@ OOPprogramming/src/Zoo/Zoo.java|04.05.2018 21:34:52|23|3f558c00ab13e825e0741f979
 SimpleMath/manifest.mf|04.05.2018 21:40:00|3|674cf1e9bdc66d7319b8538cc56762f8b2b0c49e
 SimpleMath/src/simplemath/SimpleMath.java|04.05.2018 21:40:00|101|674cf1e9bdc66d7319b8538cc56762f8b2b0c49e
 SimpleMath/src/simplemath/SimpleMathExamTest.java|04.05.2018 21:40:00|142|674cf1e9bdc66d7319b8538cc56762f8b2b0c49e
+Testicek/build.xml|04.05.2018 21:49:41|73|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/build/classes/.netbeans_automatic_build|04.05.2018 21:49:41|0|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/build/classes/.netbeans_update_resources|04.05.2018 21:49:41|0|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/build/classes/testicek/HelloObjects.class|04.05.2018 21:49:41|0|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/build/classes/testicek/Zdravic.class|04.05.2018 21:49:41|0|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/manifest.mf|04.05.2018 21:49:41|3|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/nbproject/build-impl.xml|04.05.2018 21:49:41|1420|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/nbproject/genfiles.properties|04.05.2018 21:49:41|8|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/nbproject/private/private.properties|04.05.2018 21:49:41|2|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/nbproject/private/private.xml|04.05.2018 21:49:41|7|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/nbproject/project.properties|04.05.2018 21:49:41|74|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/nbproject/project.xml|04.05.2018 21:49:41|18|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/src/testicek/HelloObjects.java|04.05.2018 21:49:41|19|977f4e87779591b935c4a3de9ea36388e72d8694
+Testicek/src/testicek/Zdravic.java|04.05.2018 21:49:41|27|977f4e87779591b935c4a3de9ea36388e72d8694

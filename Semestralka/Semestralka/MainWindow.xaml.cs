@@ -94,29 +94,7 @@ namespace Semestralka
         }
 
 
-public static bool IsInternetAvailable()
-{
-	System.Net.WebClient workstation = new System.Net.WebClient();
-	byte[] data = null;
  
-	try
-	{
-		data = workstation.DownloadData("http://www.google.com");// use any address to check connection.
-		if (data != null && data.Length > 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	catch
-	{
-		return false;
-	}
- 
-} 
 
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
@@ -192,8 +170,9 @@ public static bool IsInternetAvailable()
 
         private void button_refresh_Click(object sender, RoutedEventArgs e)
         {
-           bool isNetworkAvailable = IsInternetAvailable();
-           if (isNetworkAvailable)
+            int Desc;
+            if (InternetGetConnectedState(out Desc, 0))
+                
             { 
                 if (runner != null)
                 {
