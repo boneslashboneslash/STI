@@ -17,10 +17,8 @@ using RepositoryModel;
 using System.Threading;
 using System.Runtime.InteropServices;
 using LiveCharts.Wpf;
-using System.Net.NetworkInformation;
-using System.Net;
-using System.Windows.Threading;
-
+using NLog;
+using NLog.Targets;
 
 namespace Semestralka
 {
@@ -29,11 +27,11 @@ namespace Semestralka
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         private static RepositoryGetter getter;
         private static Runner runner = null;
         private static readonly List<string> fileExt = new List<string>();
         SettingsHandler settingshandler = null;
+        Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
@@ -43,13 +41,29 @@ namespace Semestralka
             int Desc;
             return InternetGetConnectedState(out Desc, 0);
         }
+
         public MainWindow()
         {
             InitializeComponent();
             //Sets default properties rows from project settings
             settingshandler = new SettingsHandler(sp_settings);
 
+            #region logger init
+            var config = new NLog.Config.LoggingConfiguration();
 
+            var logfile = new NLog.Targets.FileTarget() { FileName = "file.txt", Name = "logfile" };
+            var logconsole = new NLog.Targets.ConsoleTarget() { Name = "logconsole" };
+
+            config.LoggingRules.Add(new NLog.Config.LoggingRule("*", LogLevel.Info, logconsole));
+            config.LoggingRules.Add(new NLog.Config.LoggingRule("*", LogLevel.Debug, logfile));
+
+            NLog.LogManager.Configuration = config;
+            //Logger logger = NLog.LogManager.GetCurrentClassLogger();
+            #endregion
+
+            logger.Info("start");
+            //Logger logger = LogManager.GetLogger("default");
+            //logger.Info("Program started");
             //getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
             //if(getter == null)
             //{
@@ -60,16 +74,15 @@ namespace Semestralka
             //{
             //    Runner runner = new Runner(getter);     
             //}
-           GetterInit(settingshandler.getUrlTB());
+            GetterInit(settingshandler.getUrlTB());
+
             int Desc;
             if (!InternetGetConnectedState(out Desc, 0))
                 lb_status.Content = "No connection";
         }
 
-       
         public static void GetterInit(string url)
         {
-            
             getter = RepositoryGetter.CreateNewRepositoryGetter(url);
             if (getter == null)
             {
@@ -92,11 +105,7 @@ namespace Semestralka
                 
             }
         }
-
-
- 
-
-
+        
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -104,8 +113,16 @@ namespace Semestralka
 
         private void button_export_Click(object sender, RoutedEventArgs e)
         {
-
-            Save.ExportFilesToExcel((dataGrid.ItemsSource != null)?dataGrid.ItemsSource.Cast<GitFile>().ToList():null, settingshandler.getStorageTB()); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                //dialog.SelectedPath = settingshandler.getStorageTB();
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result.ToString() == "OK")
+                {
+                    Save.ExportFilesToExcel((dataGrid.ItemsSource != null) ? dataGrid.ItemsSource.Cast<GitFile>().ToList() : null, dialog.SelectedPath); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
+                    System.Windows.MessageBox.Show("Saved");
+                }
+            }      
         }
         
         private void button_save_Click(object sender, RoutedEventArgs e)
@@ -146,52 +163,34 @@ namespace Semestralka
             {
                 System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);
             }
-            catch (Exception ae)
-            { 
-                if(ae is AggregateException || ae is KeyNotFoundException || ae is NullReferenceException)
+            catch (AggregateException ae)
+            {
                 ae.ToString();
             }
-            
-            
-                
-            
         }
+
         private void button_graf_Click(object sender, RoutedEventArgs e)
         {
-            try {
-                Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(), dataGrid.SelectedItems.Cast<GitFile>().ToList());
-                    }
-            catch (ArgumentNullException)
-            {
-                System.Windows.MessageBox.Show("Not connected to internet");
-            }
+            Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(),dataGrid.SelectedItems.Cast<GitFile>().ToList());
 
         }
 
         private void button_refresh_Click(object sender, RoutedEventArgs e)
         {
-            int Desc;
-            if (InternetGetConnectedState(out Desc, 0))
-                
-            { 
-                if (runner != null)
-                {
-                    runner.cts.Cancel();
-                }
-                try
-                {
-                    lb_status.Content = "Searching...";
-                    runner = new Runner(getter, false);
-                }
-                catch (Exception ex)
-                {
-                    ex.ToString();
-                }
+            if (runner != null)
+            {
+                runner.cts.Cancel();
             }
-           else
-            { lb_status.Content = "No connection"; }
+            try
+            {
+                lb_status.Content = "Searching...";
+                runner = new Runner(getter,false);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
 
         }
-      
     }
 }

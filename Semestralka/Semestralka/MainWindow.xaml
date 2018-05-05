@@ -24,10 +24,8 @@
         <Image x:Name="image" Source="Arrioch-Office-Dock-Color-MS-Excel.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,162,30,61" Grid.RowSpan="2" />
 
         <Button x:Name="button_export" Content="Export" Grid.ColumnSpan="3" Margin="-3,207,4,0" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_export_Click" Width="159" Height="56" Style="{StaticResource MyButton}"/>
-
         <Image x:Name="image_Copy" Source="Custom-Icon-Design-Mono-General-2-Export.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,218,30,5" Grid.RowSpan="2"/>
         <Button x:Name="button_count" Margin="0,0,1,211" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Click="button_count_Click" Width="159" Height="57" Style="{StaticResource MyButton}" Grid.Row="2" Grid.ColumnSpan="3" Content="Count"/>
-        <Image x:Name="image_Copy2" Source="Oxygen-Icons.org-Oxygen-Apps-accessories-calculator.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,10,30,218" Grid.Row="2" />
         <Button x:Name="button_save" Content ="Save"  Grid.ColumnSpan="3" Margin="0,95,2,112" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Grid.RowSpan="2" Click="button_save_Click" Width="158" Height="55" Style="{StaticResource MyButton}"/>
         <Image x:Name="image_Copy1" Source="Custom-Icon-Design-Pretty-Office-7-Save.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="51" Margin="10,95,30,117" Grid.RowSpan="2"/>
         <Button x:Name="button_refresh" Margin="-1,54.8,2,156.2" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Width="159" Height="57" Style="{StaticResource MyButton}" Grid.Row="2" Grid.ColumnSpan="3" Content="Refresh" Click="button_refresh_Click"/>
@@ -40,7 +38,8 @@
         <Label x:Name="lb_status" Content="Status" Foreground="White" FontSize="15" HorizontalAlignment="Center" Margin="29,35,14,0" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="117" Height="35"/>
         <Label x:Name="label" Content="Pecina, Souček, Špetlík" HorizontalAlignment="Left" Height="30" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="146" Grid.ColumnSpan="3" Foreground="White" FontFamily="Times New Roman" FontSize="14"/>
         <DataGrid x:Name="dataGrid" EnableColumnVirtualization="False" EnableRowVirtualization="False" Margin="58,100,-675,9" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}" Width="674" Height="422" IsReadOnly="True" IsSynchronizedWithCurrentItem="False"/>
-        <Image x:Name="image_Copy3" Source="Graphicloads-100-Flat-Reload.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,62,30,166" Grid.Row="2" />
+        <Image x:Name="image_Copy2" Source="Oxygen-Icons.org-Oxygen-Apps-accessories-calculator.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,10,30,218" Grid.Row="2"/>
+        <Image x:Name="image_Copy3" Source="Graphicloads-100-Flat-Reload.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,62,30,166" Grid.Row="2"/>
 
 
 

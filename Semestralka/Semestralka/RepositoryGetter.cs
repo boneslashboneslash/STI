@@ -13,6 +13,7 @@ using System.Security.Policy;
 using System.Windows;
 using Semestralka;
 using System.Threading;
+using NLog;
 
 namespace RepositoryModel
 {
@@ -36,6 +37,7 @@ namespace RepositoryModel
 
         // Files changed during app run
         public IDictionary<string, List<string[]>> FilesChanges = new Dictionary<string, List<string[]>>();
+        public Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         /**
          * Constructor
@@ -192,7 +194,7 @@ namespace RepositoryModel
                 var commit = client.Repository.Commit.Get(UserName, RepoName, currentCommit.Sha);
 
                 // Commit after date (method parameter)
-                if (DateTimeOffset.Compare(commit.Result.Commit.Author.Date.LocalDateTime, new DateTimeOffset(date)) > 0)
+                if (DateTimeOffset.Compare(commit.Result.Commit.Author.Date, new DateTimeOffset(date)) > 0)
                 {
                     foreach (GitHubCommitFile file in commit.Result.Files)
                     {
@@ -214,7 +216,7 @@ namespace RepositoryModel
 
                         version[0] = file.Changes.ToString(); // Number of file changes
                         //Date of commmit, commit Identificator
-                        version[2] = commit.Result.Commit.Author.Date.LocalDateTime.ToString("dd.MM.yyyy HH:mm:ss");
+                        version[2] = commit.Result.Commit.Author.Date.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss");
 
                         version[3] = commit.Result.Sha;
                         // Save file name
@@ -238,6 +240,7 @@ namespace RepositoryModel
                     }
                 }
             }
+            logger.Info(FilesChanges.Count().ToString());
             return FilesChanges;
         }
 

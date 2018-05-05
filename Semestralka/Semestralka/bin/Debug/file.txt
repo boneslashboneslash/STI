@@ -1,0 +1,13 @@
+2018-05-04 16:00:14.0258|INFO|Semestralka.MainWindow|start
+2018-05-04 16:00:45.1832|INFO|RepositoryModel.RepositoryGetter|3
+2018-05-04 16:03:27.3750|INFO|Semestralka.MainWindow|start
+2018-05-04 16:03:53.3789|INFO|RepositoryModel.RepositoryGetter|3
+2018-05-05 14:15:27.0050|INFO|Semestralka.MainWindow|start
+2018-05-05 14:29:39.9223|INFO|Semestralka.MainWindow|start
+2018-05-05 14:44:27.2208|INFO|Semestralka.MainWindow|start
+2018-05-05 14:46:10.5048|INFO|RepositoryModel.RepositoryGetter|3
+2018-05-05 14:59:05.5778|INFO|Semestralka.MainWindow|start
+2018-05-05 14:59:53.8161|INFO|RepositoryModel.RepositoryGetter|0
+2018-05-05 15:01:50.9581|INFO|RepositoryModel.RepositoryGetter|1
+2018-05-05 15:05:11.1540|INFO|RepositoryModel.RepositoryGetter|1
+2018-05-05 15:07:14.5540|INFO|RepositoryModel.RepositoryGetter|1
