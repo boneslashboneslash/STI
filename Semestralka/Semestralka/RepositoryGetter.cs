@@ -13,6 +13,7 @@ using System.Security.Policy;
 using System.Windows;
 using Semestralka;
 using System.Threading;
+using NLog;
 
 namespace RepositoryModel
 {
@@ -36,6 +37,7 @@ namespace RepositoryModel
 
         // Files changed during app run
         public IDictionary<string, List<string[]>> FilesChanges = new Dictionary<string, List<string[]>>();
+        public Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         /**
          * Constructor
@@ -238,6 +240,7 @@ namespace RepositoryModel
                     }
                 }
             }
+            logger.Info(FilesChanges.Count().ToString());
             return FilesChanges;
         }
 

@@ -37,7 +37,7 @@ namespace Semestralka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\TUL\\STI")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\")]
         public string storage {
             get {
                 return ((string)(this["storage"]));

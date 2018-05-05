@@ -16,3 +16,11 @@ C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Release\Semestralka.csproj.Ge
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Release\Semestralka.csproj.CoreCompileInputs.cache
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Release\Semestralka.exe
 C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Release\Semestralka.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\LiveCharts.dll
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\LiveCharts.Wpf.dll
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\LiveCharts.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\LiveCharts.xml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\LiveCharts.Wpf.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\LiveCharts.Wpf.xml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Release\App.baml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Release\Semestralka.csprojResolveAssemblyReference.cache

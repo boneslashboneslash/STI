@@ -24,10 +24,11 @@ namespace Semestralka
         {
             foreach (SettingsProperty item in Semestralka.Properties.Settings.Default.Properties)
             {
+                //if (item.Name.Equals("url"))
                 sp_settings.Children.Add(settingRow(item.Name));
             }
         }
-      
+
         /// <summary>
         /// Define autosave row
         /// </summary>
@@ -132,7 +133,7 @@ namespace Semestralka
             var textBox = (sender as TextBox);
             try
             {
-                if (textBox.Name.Equals("storage_TextBox"))
+                if (textBox.Name.Equals("storage_TextBox") && !textBox.Text.Equals(""))
                 {
                     // get the file attributes for file or directory
                     FileAttributes attr = File.GetAttributes(textBox.Text);
@@ -143,7 +144,7 @@ namespace Semestralka
                         MessageBox.Show("Its a file");
                         textBox.Text = "";
                     }
-                                             
+
                 }
             }
             catch
@@ -153,12 +154,12 @@ namespace Semestralka
             }
 
             try
-            {               
+            {
                 if (textBox.Name.Equals("url_TextBox") && !prviousUrl.Equals(textBox.Text))
                 {
                     prviousUrl = textBox.Text;
                     MainWindow.GetterInit(textBox.Text);
-                }              
+                }
             }
             catch
             {

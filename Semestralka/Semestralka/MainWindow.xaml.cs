@@ -17,6 +17,8 @@ using RepositoryModel;
 using System.Threading;
 using System.Runtime.InteropServices;
 using LiveCharts.Wpf;
+using NLog;
+using NLog.Targets;
 
 namespace Semestralka
 {
@@ -29,6 +31,7 @@ namespace Semestralka
         private static Runner runner = null;
         private static readonly List<string> fileExt = new List<string>();
         SettingsHandler settingshandler = null;
+        Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         [DllImport("wininet.dll")]
         private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
@@ -44,8 +47,23 @@ namespace Semestralka
             InitializeComponent();
             //Sets default properties rows from project settings
             settingshandler = new SettingsHandler(sp_settings);
-            
 
+            #region logger init
+            var config = new NLog.Config.LoggingConfiguration();
+
+            var logfile = new NLog.Targets.FileTarget() { FileName = "file.txt", Name = "logfile" };
+            var logconsole = new NLog.Targets.ConsoleTarget() { Name = "logconsole" };
+
+            config.LoggingRules.Add(new NLog.Config.LoggingRule("*", LogLevel.Info, logconsole));
+            config.LoggingRules.Add(new NLog.Config.LoggingRule("*", LogLevel.Debug, logfile));
+
+            NLog.LogManager.Configuration = config;
+            //Logger logger = NLog.LogManager.GetCurrentClassLogger();
+            #endregion
+
+            logger.Info("start");
+            //Logger logger = LogManager.GetLogger("default");
+            //logger.Info("Program started");
             //getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
             //if(getter == null)
             //{
@@ -95,8 +113,16 @@ namespace Semestralka
 
         private void button_export_Click(object sender, RoutedEventArgs e)
         {
-
-            Save.ExportFilesToExcel((dataGrid.ItemsSource != null)?dataGrid.ItemsSource.Cast<GitFile>().ToList():null, settingshandler.getStorageTB()); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
+            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                //dialog.SelectedPath = settingshandler.getStorageTB();
+                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                if (result.ToString() == "OK")
+                {
+                    Save.ExportFilesToExcel((dataGrid.ItemsSource != null) ? dataGrid.ItemsSource.Cast<GitFile>().ToList() : null, dialog.SelectedPath); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
+                    System.Windows.MessageBox.Show("Saved");
+                }
+            }      
         }
         
         private void button_save_Click(object sender, RoutedEventArgs e)
@@ -142,6 +168,7 @@ namespace Semestralka
                 ae.ToString();
             }
         }
+
         private void button_graf_Click(object sender, RoutedEventArgs e)
         {
             Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(),dataGrid.SelectedItems.Cast<GitFile>().ToList());

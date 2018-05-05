@@ -6,7 +6,7 @@
       <Value Profile="(Default)">https://github.com/boneslashboneslash/TEST</Value>
     </Setting>
     <Setting Name="storage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\TUL\STI</Value>
+      <Value Profile="(Default)">C:\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

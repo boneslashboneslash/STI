@@ -1,4 +1,5 @@
-﻿using RepositoryModel;
+﻿using NLog;
+using RepositoryModel;
 using System;
 using System.Data;
 using System.Linq;
@@ -14,9 +15,11 @@ namespace Semestralka
     {
         public CancellationTokenSource cts = new CancellationTokenSource();
         public static DateTime currentDateTime;
+        public Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         public Runner(RepositoryGetter getter, bool setActualDate)
         {
-            var dueTime = TimeSpan.FromSeconds(5);
+            var dueTime = TimeSpan.FromSeconds(1);
             var interval = TimeSpan.FromSeconds(3600);
 
             if(setActualDate == true)
