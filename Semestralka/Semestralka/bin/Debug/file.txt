@@ -11,3 +11,4 @@
 2018-05-05 15:01:50.9581|INFO|RepositoryModel.RepositoryGetter|1
 2018-05-05 15:05:11.1540|INFO|RepositoryModel.RepositoryGetter|1
 2018-05-05 15:07:14.5540|INFO|RepositoryModel.RepositoryGetter|1
+2018-05-05 15:40:31.7668|INFO|Semestralka.MainWindow|start
