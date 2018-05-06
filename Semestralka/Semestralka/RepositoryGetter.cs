@@ -214,7 +214,11 @@ namespace RepositoryModel
                             version[1] = "text";
                         }
 
-                        version[0] = file.Changes.ToString(); // Number of file changes
+                        // Number of file changes
+                        var fileContent = getFileContent(file.Filename).Result;
+                        version[0] = fileContent.Split('\n').Length.ToString();
+
+                        //version[0] = file.Changes.ToString(); // Number of file changes
                         //Date of commmit, commit Identificator
                         version[2] = commit.Result.Commit.Author.Date.ToLocalTime().ToString("dd.MM.yyyy HH:mm:ss");
 
@@ -240,7 +244,6 @@ namespace RepositoryModel
                     }
                 }
             }
-            logger.Info(FilesChanges.Count().ToString());
             return FilesChanges;
         }
 

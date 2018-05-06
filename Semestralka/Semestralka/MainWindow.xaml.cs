@@ -51,7 +51,7 @@ namespace Semestralka
             #region logger init
             var config = new NLog.Config.LoggingConfiguration();
 
-            var logfile = new NLog.Targets.FileTarget() { FileName = "file.txt", Name = "logfile" };
+            var logfile = new NLog.Targets.FileTarget() { FileName = "log.txt", Name = "logfile" };
             var logconsole = new NLog.Targets.ConsoleTarget() { Name = "logconsole" };
 
             config.LoggingRules.Add(new NLog.Config.LoggingRule("*", LogLevel.Info, logconsole));
@@ -183,6 +183,7 @@ namespace Semestralka
             }
             try
             {
+                logger.Info("refresh_Click start");
                 lb_status.Content = "Searching...";
                 runner = new Runner(getter,false);
             }
