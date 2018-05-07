@@ -155,6 +155,7 @@ namespace Semestralka
             //    string filename = dlg.FileName;
             //}
             getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
+            System.Windows.MessageBox.Show("Saved");
         }
 
         private void button_count_Click(object sender, RoutedEventArgs e)
