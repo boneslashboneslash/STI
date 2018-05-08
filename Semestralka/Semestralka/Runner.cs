@@ -15,15 +15,17 @@ namespace Semestralka
     {
         public CancellationTokenSource cts = new CancellationTokenSource();
         public static DateTime currentDateTime;
-        public Logger logger = NLog.LogManager.GetCurrentClassLogger();
+        public static Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         public Runner(RepositoryGetter getter, bool setActualDate)
         {
+            logger.Info("new runner");
             var dueTime = TimeSpan.FromSeconds(1);
             var interval = TimeSpan.FromSeconds(3600);
 
             if(setActualDate == true)
             {
+                logger.Info("clear datagrid");
                 MainWindow win = (MainWindow)Application.Current.MainWindow;
                 win.dataGrid.ItemsSource = null;
             }
@@ -43,6 +45,7 @@ namespace Semestralka
 
             if (currentDateTime.ToString("dd.MM.yyyy HH:mm:ss").Equals("01.01.0001 00:00:00") || setActualDate == true)
             {
+                logger.Info("set actual date time");
                 currentDateTime = DateTime.Now;
             }       
             // Repeat this loop until cancelled.
@@ -68,11 +71,14 @@ namespace Semestralka
             // load backup from file
             if (getter.FilesChanges.Count() == 0)
             {
+                logger.Info("load backup from file");
                 getter.loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(getter.UserName + "_" + getter.RepoName + ".txt"));
             }
-            
+
+            logger.Info("searching files");
             var filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month, 
                 currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
+            
             //var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
             //currentDateTime = new DateTime(2016, 4, 19, 20, 22, 12);
 
@@ -104,6 +110,7 @@ namespace Semestralka
                     }
                 }
                 //save to file 
+                logger.Info("save changes to file ");
                 Save.SaveDatagridContent(getter.UserName + "_" + getter.RepoName+ ".txt", getter.FilesChanges);
                 win.lb_status.Content = "Finished";
             }));

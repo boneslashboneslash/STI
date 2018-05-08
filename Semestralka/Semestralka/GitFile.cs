@@ -48,7 +48,17 @@ namespace Semestralka
             foreach (var listItem in list)
             {
                 var dictItem = dictAll.Where(x => x.Key == listItem.name).First();
-                result.Add(dictItem);
+                foreach(var item in dictItem.Value)
+                {
+                    if(item[2] == listItem.datetime)
+                    {
+                        List<string[]> l = new List<string[]>(1);
+                        l.Add(item);
+                        KeyValuePair<string, List<string[]>> kvp = new KeyValuePair<string, List<string[]>>(listItem.name, l);
+                        result.Add(kvp);
+                    }                  
+                }
+                //result.Add(dictItem);
             }
             return result;
         }
