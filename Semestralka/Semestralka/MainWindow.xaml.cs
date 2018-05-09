@@ -134,6 +134,8 @@ namespace Semestralka
                 if(result.ToString() == "OK")
                 {
                     settingshandler.setStorageTB(dialog.SelectedPath);
+                    getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
+                    System.Windows.MessageBox.Show("Saved");
                 }   
             }
 
@@ -154,8 +156,7 @@ namespace Semestralka
             //    // Save document
             //    string filename = dlg.FileName;
             //}
-            getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
-            System.Windows.MessageBox.Show("Saved");
+            
         }
 
         private void button_count_Click(object sender, RoutedEventArgs e)

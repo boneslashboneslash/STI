@@ -24,10 +24,12 @@ namespace Semestralka
                 listFiles = listFiles.OrderBy(f => f.datetime).ToList();
                 p = new CartesianChart();
                 var window = new Window();
-                window.Name = "Graf";
                 List<String> datumList = new List<String>();
                 List<int> pocetList = new List<int>();
                 string name = filenamematch[0].name;
+                string [] k = name.Split('/'); 
+                window.Title = "Graf počtu řádků souboru: " + k[k.Length-1];
+                window.Name = "Graf";
                 foreach (var file in listFiles)
                 {
                     if (name.Equals(file.name))
@@ -41,7 +43,8 @@ namespace Semestralka
             {
                 new LineSeries
                 {
-                    Title = "Počet řádků v souboru: ",
+                 
+                    Title = "Počet řádků v souboru "+ k[k.Length-1] + ": ",
                     // můžou se nasoukat data z Dictionary -> viz druhá zkouška
                     Values = new ChartValues<int> (pocetList)
                     //Values = new ChartValues<double> {100, 200, 250, 300, 400, 700},
