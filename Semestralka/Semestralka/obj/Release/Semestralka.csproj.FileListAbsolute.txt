@@ -52,3 +52,4 @@ E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Release\Semestral
 E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Release\Semestralka.csproj.GenerateResource.Cache
 E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Release\Semestralka.exe
 E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Release\Semestralka.pdb
+E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Release\Semestralka.csprojResolveAssemblyReference.cache

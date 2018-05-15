@@ -179,21 +179,28 @@ namespace Semestralka
 
         private void button_refresh_Click(object sender, RoutedEventArgs e)
         {
-            if (runner != null)
+            int Desc;
+            if (!InternetGetConnectedState(out Desc, 0))
             {
-                runner.cts.Cancel();
+                lb_status.Content = "No connection";
             }
-            try
+            else
             {
-                logger.Info("refresh_Click start");
-                lb_status.Content = "Searching...";
-                runner = new Runner(getter,false);
+                if (runner != null)
+                {
+                    runner.cts.Cancel();
+                }
+                try
+                {
+                    logger.Info("refresh_Click start");
+                    lb_status.Content = "Searching...";
+                    runner = new Runner(getter, false);
+                }
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                }
             }
-            catch (Exception ex)
-            {
-                ex.ToString();
-            }
-
         }
     }
 }

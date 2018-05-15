@@ -118,3 +118,10 @@
 2018-05-09 02:32:17.3011|INFO|Semestralka.Runner|new runner
 2018-05-09 02:32:18.3324|INFO|Semestralka.Runner|searching files
 2018-05-09 02:32:50.0232|INFO|Semestralka.Runner|save changes to file 
+2018-05-15 16:35:10.7460|INFO|Semestralka.MainWindow|start
+2018-05-15 16:35:19.8084|INFO|Semestralka.Runner|new runner
+2018-05-15 16:35:19.8084|INFO|Semestralka.Runner|clear datagrid
+2018-05-15 16:35:21.0734|INFO|Semestralka.Runner|set actual date time
+2018-05-15 16:35:25.9560|INFO|Semestralka.Runner|load backup from file
+2018-05-15 16:35:26.0326|INFO|Semestralka.Runner|searching files
+2018-05-15 16:36:20.0038|INFO|Semestralka.Runner|save changes to file 
