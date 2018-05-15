@@ -102,6 +102,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connection.cs" />
     <Compile Include="GitFile.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="MainRunner.cs" />

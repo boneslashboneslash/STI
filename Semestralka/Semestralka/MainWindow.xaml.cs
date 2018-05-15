@@ -28,23 +28,16 @@ namespace Semestralka
     public partial class MainWindow : Window
     {
         private static RepositoryGetter getter;
+        private static DateTime searchingDateTime = new DateTime();
         private static Runner runner = null;
         private static readonly List<string> fileExt = new List<string>();
         SettingsHandler settingshandler = null;
         Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        [DllImport("wininet.dll")]
-        private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
-
-        private static bool IsConnectedToInternet()
-        {
-            int Desc;
-            return InternetGetConnectedState(out Desc, 0);
-        }
-
         public MainWindow()
         {
             InitializeComponent();
+            searchingDateTime = DateTime.Now;
             //Sets default properties rows from project settings
             settingshandler = new SettingsHandler(sp_settings);
 
@@ -62,23 +55,14 @@ namespace Semestralka
             #endregion
 
             logger.Info("start");
-            //Logger logger = LogManager.GetLogger("default");
-            //logger.Info("Program started");
-            //getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
-            //if(getter == null)
-            //{
-            //    System.Windows.MessageBox.Show("repository not found");
-            //    settingshandler.setUrlTB("");
-            //}
-            //else
-            //{
-            //    Runner runner = new Runner(getter);     
-            //}
-            GetterInit(settingshandler.getUrlTB());
 
-            int Desc;
-            if (!InternetGetConnectedState(out Desc, 0))
-                lb_status.Content = "No connection";
+            //checking net status
+            runner = new Runner();
+            //GetterInit(settingshandler.getUrlTB());
+
+            //int Desc;
+            //if (!InternetGetConnectedState(out Desc, 0))
+            //    lb_status.Content = "No connection";
         }
 
         public static void GetterInit(string url)
@@ -90,13 +74,17 @@ namespace Semestralka
             }
             else
             {
-                if(runner != null)
-                {
-                    runner.cts.Cancel();
-                }
+                //if(runner != null)
+                //{
+                //    runner.cts.Cancel();
+                //}
                 try
                 {
-                    runner = new Runner(getter, true);
+                    //searchingDateTime = DateTime.Now;
+                    Thread t = new Thread(() => searchingDateTime = getter.CheckingRepository(searchingDateTime));
+                    t.Start();
+                    //getter.CheckingRepository(searchingDateTime);
+                    //runner = new Runner(getter, true);
                 }
                 catch(Exception ex)
                 {
@@ -163,7 +151,14 @@ namespace Semestralka
         {
             try
             {
-                System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);
+                if (!Connection.CheckConnection())
+                {
+                    System.Windows.MessageBox.Show("No connection");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);
+                }
             }
             catch (AggregateException ae)
             {
@@ -179,27 +174,40 @@ namespace Semestralka
 
         private void button_refresh_Click(object sender, RoutedEventArgs e)
         {
-            int Desc;
-            if (!InternetGetConnectedState(out Desc, 0))
+            if (!Connection.CheckConnection())
             {
-                lb_status.Content = "No connection";
+                System.Windows.MessageBox.Show("No connection");
             }
             else
             {
-                if (runner != null)
-                {
-                    runner.cts.Cancel();
-                }
-                try
+                if(getter == null)
                 {
                     logger.Info("refresh_Click start");
-                    lb_status.Content = "Searching...";
-                    runner = new Runner(getter, false);
+                    GetterInit(settingshandler.getUrlTB());
                 }
-                catch (Exception ex)
+                else
                 {
-                    ex.ToString();
-                }
+                    //if (runner != null)
+                    //{
+                    //    runner.cts.Cancel();
+                    //}
+                    try
+                    {
+                        logger.Info("refresh_Click start");
+                        //runner = new Runner(getter, false);
+                        //getter.CheckRepository(getter.CheckingRepository,searchingDateTime);
+                        Thread t = new Thread(() => searchingDateTime = getter.CheckingRepository(searchingDateTime));
+                        t.Start();
+                        //getter.CheckingRepository(searchingDateTime);
+                        //set datetime for next search
+
+                        //searchingDateTime = DateTime.Now;                       
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ToString();
+                    }
+                }                            
             }
         }
     }
