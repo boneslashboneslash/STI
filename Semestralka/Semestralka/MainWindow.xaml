@@ -35,11 +35,12 @@
                 <StackPanel x:Name="sp_settings" Grid.Column="1" Margin="5,5,5,10" />
             </ScrollViewer>
         </Grid>
-        <Label x:Name="lb_status" Content="Status" Foreground="White" FontSize="15" HorizontalAlignment="Center" Margin="29,35,14,0" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="117" Height="35"/>
+        <Label x:Name="lb_status" Content="not searched" Foreground="White" FontSize="15" HorizontalAlignment="Center" Margin="20,56,23,0" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="117" Height="35"/>
         <Label x:Name="label" Content="Pecina, Souček, Špetlík" HorizontalAlignment="Left" Height="30" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="146" Grid.ColumnSpan="3" Foreground="White" FontFamily="Times New Roman" FontSize="14"/>
         <DataGrid x:Name="dataGrid" EnableColumnVirtualization="False" EnableRowVirtualization="False" Margin="58,100,-675,9" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}" Width="674" Height="422" IsReadOnly="True" IsSynchronizedWithCurrentItem="False"/>
         <Image x:Name="image_Copy2" Source="Oxygen-Icons.org-Oxygen-Apps-accessories-calculator.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,10,30,218" Grid.Row="2"/>
         <Image x:Name="image_Copy3" Source="Graphicloads-100-Flat-Reload.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,62,30,166" Grid.Row="2"/>
+        <Label x:Name="lb_status_connect" Content="" Foreground="White" FontSize="15" HorizontalAlignment="Center" Margin="20,21,23,0" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="117" Height="35"/>
 
 
 

@@ -55,3 +55,5 @@ E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Debug\Semestralka
 E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Debug\Semestralka.csproj.GenerateResource.Cache
 E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Debug\Semestralka.exe
 E:\Users\SULO\Documents\GitHub\STI\Semestralka\Semestralka\obj\Debug\Semestralka.pdb
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Debug\Semestralka_Content.g.cs
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Debug\NLog.config

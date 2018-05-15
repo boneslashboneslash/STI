@@ -126,3 +126,96 @@
 2018-05-09 02:01:35.2990|INFO|Semestralka.Runner|load backup from file
 2018-05-09 02:01:35.4131|INFO|Semestralka.Runner|searching files
 2018-05-09 02:02:06.8032|INFO|Semestralka.Runner|save changes to file 
+2018-05-15 18:29:11.6711|INFO|Semestralka.MainWindow|start
+2018-05-15 18:29:11.7506|INFO|Semestralka.Runner|new runner
+2018-05-15 18:44:44.7905|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 18:44:44.7905|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 18:45:17.5708|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 18:47:53.0331|INFO|Semestralka.MainWindow|start
+2018-05-15 18:47:53.1191|INFO|Semestralka.Runner|new runner
+2018-05-15 18:47:59.2143|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 18:47:59.2143|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 18:48:30.7587|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 19:00:14.3937|INFO|Semestralka.MainWindow|start
+2018-05-15 19:00:14.4913|INFO|Semestralka.Runner|new runner
+2018-05-15 19:00:20.9799|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 19:00:20.9799|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 19:00:56.8612|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 19:01:00.8835|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 19:01:00.8835|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 19:01:00.8835|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 19:01:32.7863|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 19:32:09.6646|INFO|Semestralka.MainWindow|start
+2018-05-15 19:32:23.7194|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 19:32:23.7194|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 19:32:55.9514|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 19:39:59.2776|INFO|Semestralka.MainWindow|start
+2018-05-15 19:40:09.5206|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 19:40:09.5206|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 19:40:42.7438|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 19:50:34.3065|INFO|Semestralka.MainWindow|start
+2018-05-15 19:50:38.6587|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 19:50:38.6617|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 19:51:11.6991|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 19:54:19.8914|INFO|Semestralka.MainWindow|start
+2018-05-15 19:55:05.0395|INFO|Semestralka.MainWindow|start
+2018-05-15 19:55:22.8897|INFO|Semestralka.MainWindow|start
+2018-05-15 19:57:17.5439|INFO|Semestralka.MainWindow|start
+2018-05-15 19:57:23.0423|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 19:57:23.0423|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 19:57:55.8632|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 19:58:23.7390|INFO|Semestralka.MainWindow|start
+2018-05-15 19:58:23.8941|INFO|Semestralka.Runner|new runner
+2018-05-15 19:58:28.0157|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 19:58:28.0157|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 19:59:01.9172|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 20:00:34.8052|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:00:34.8052|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 20:00:34.8052|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:01:10.5233|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 20:02:59.2639|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:02:59.2769|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 20:02:59.2769|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:08:52.9032|INFO|Semestralka.MainWindow|start
+2018-05-15 20:08:52.9912|INFO|Semestralka.Runner|new runner
+2018-05-15 20:08:58.1020|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 20:08:58.1020|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:09:09.2914|INFO|Semestralka.MainWindow|start
+2018-05-15 20:09:09.3859|INFO|Semestralka.Runner|new runner
+2018-05-15 20:09:13.3525|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 20:09:13.3525|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:10:40.5559|INFO|Semestralka.MainWindow|start
+2018-05-15 20:10:40.6190|INFO|Semestralka.Runner|new runner
+2018-05-15 20:10:47.0949|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 20:10:47.0949|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:11:45.1484|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 20:14:21.9903|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:20:14.2154|INFO|Semestralka.MainWindow|start
+2018-05-15 20:20:14.3144|INFO|Semestralka.Runner|new runner
+2018-05-15 20:24:19.8999|INFO|Semestralka.MainWindow|start
+2018-05-15 20:24:20.0585|INFO|Semestralka.Runner|new runner
+2018-05-15 20:24:54.0868|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:24:55.2846|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 20:24:55.2881|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:25:43.9436|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 20:29:14.3402|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:29:14.3402|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:29:53.4629|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 20:33:08.6603|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:33:08.6603|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:35:35.1245|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 20:37:05.2120|INFO|Semestralka.MainWindow|start
+2018-05-15 20:37:05.2986|INFO|Semestralka.Runner|new runner
+2018-05-15 20:38:02.6558|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:38:03.7926|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 20:38:03.7926|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:38:55.6345|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 20:39:25.2283|INFO|Semestralka.MainWindow|start
+2018-05-15 20:39:25.2929|INFO|Semestralka.Runner|new runner
+2018-05-15 20:40:07.7653|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:40:08.9061|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-15 20:40:08.9061|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:40:48.2840|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-15 20:42:06.3004|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-15 20:42:06.3054|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-15 20:42:45.8019|INFO|RepositoryModel.RepositoryGetter|save changes to file 

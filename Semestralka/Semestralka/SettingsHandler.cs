@@ -83,6 +83,7 @@ namespace Semestralka
                 if (tx.Name == "storage_TextBox")
                 {
                     storageTB = tx;
+                    storageTB.IsEnabled = false;
                 }
 
                 return result;
