@@ -101,6 +101,12 @@ namespace Semestralka
 
         private void button_export_Click(object sender, RoutedEventArgs e)
         {
+            if (!Connection.CheckConnection())
+            {
+                System.Windows.MessageBox.Show("No connection");
+            }
+            else
+            { 
             using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
             {
                 //dialog.SelectedPath = settingshandler.getStorageTB();
@@ -110,24 +116,45 @@ namespace Semestralka
                     Save.ExportFilesToExcel((dataGrid.ItemsSource != null) ? dataGrid.ItemsSource.Cast<GitFile>().ToList() : null, dialog.SelectedPath); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
                     System.Windows.MessageBox.Show("Saved");
                 }
-            }      
+            }
+            }
         }
         
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
+            if (!Connection.CheckConnection())
             {
-                dialog.SelectedPath = settingshandler.getStorageTB();
-                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-                if(result.ToString() == "OK")
+                System.Windows.MessageBox.Show("No connection");
+            }
+            else
+            {
+                using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
                 {
-                    settingshandler.setStorageTB(dialog.SelectedPath);
-                    getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
-                    System.Windows.MessageBox.Show("Saved");
-                }   
+                    dialog.SelectedPath = settingshandler.getStorageTB();
+                    System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                    if (result.ToString() == "OK")
+                    {
+                        settingshandler.setStorageTB(dialog.SelectedPath);
+                        try
+                        { 
+                        getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
+                            System.Windows.MessageBox.Show("Saved");
+                        }
+                        catch(ArgumentNullException ex)
+                        {
+                            System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+                        }
+                        catch(NullReferenceException ex)
+                        {
+                            System.Windows.MessageBox.Show("Chyba");
+                        }
+                            
+                    }
+                }
             }
 
-
+            
+            
 
             //// Configure save file dialog box
             //Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -144,7 +171,7 @@ namespace Semestralka
             //    // Save document
             //    string filename = dlg.FileName;
             //}
-            
+
         }
 
         private void button_count_Click(object sender, RoutedEventArgs e)
@@ -168,8 +195,19 @@ namespace Semestralka
 
         private void button_graf_Click(object sender, RoutedEventArgs e)
         {
+            if (!Connection.CheckConnection())
+            {
+                System.Windows.MessageBox.Show("No connection");
+            }
+            else {
+                try { 
             Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(),dataGrid.SelectedItems.Cast<GitFile>().ToList());
-
+                }
+                catch(ArgumentNullException )
+                {
+                    System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+                }
+                }
         }
 
         private void button_refresh_Click(object sender, RoutedEventArgs e)
