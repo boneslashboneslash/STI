@@ -9,7 +9,7 @@
     <Window.Effect>
         <DropShadowEffect Color="#FFD32A2A" BlurRadius="10"/>
     </Window.Effect>
-    <Grid Name ="testicek" Margin="0,0,670,0" Background="#FFD32A2A" Width="160" Height="531">
+    <Grid Name ="testicek" Margin="0,0,670,0" Background="Black" Width="160" Height="531">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
             <RowDefinition Height="258*"/>
@@ -30,17 +30,21 @@
         <Image x:Name="image_Copy1" Source="Custom-Icon-Design-Pretty-Office-7-Save.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="51" Margin="10,95,30,117" Grid.RowSpan="2"/>
         <Button x:Name="button_refresh" Margin="-1,54.8,2,156.2" Background="{x:Null}" FontSize="14" FontFamily="Century Gothic" Foreground="White" BorderBrush="{x:Null}" Width="159" Height="57" Style="{StaticResource MyButton}" Grid.Row="2" Grid.ColumnSpan="3" Content="Refresh" Click="button_refresh_Click"/>
 
-        <Grid Grid.Column="2" Height="85" Margin="53,0,-685,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="#FFD32A2A">
+        <Grid Grid.Column="2" Height="85" Margin="53,0,-685,0" Grid.RowSpan="2" VerticalAlignment="Top" Background="Black">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,113,0" Width="576">
                 <StackPanel x:Name="sp_settings" Grid.Column="1" Margin="5,5,5,10" />
             </ScrollViewer>
         </Grid>
-        <Label x:Name="lb_status" Content="not searched" Foreground="White" FontSize="15" HorizontalAlignment="Center" Margin="20,56,23,0" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="117" Height="35"/>
-        <Label x:Name="label" Content="Pecina, Souček, Špetlík" HorizontalAlignment="Left" Height="30" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="146" Grid.ColumnSpan="3" Foreground="White" FontFamily="Times New Roman" FontSize="14"/>
-        <DataGrid x:Name="dataGrid" EnableColumnVirtualization="False" EnableRowVirtualization="False" Margin="58,100,-675,9" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}" Width="674" Height="422" IsReadOnly="True" IsSynchronizedWithCurrentItem="False"/>
+        <Label x:Name="lb_status" Content="not searched" Foreground="Red" FontSize="18" HorizontalAlignment="Center" Margin="10,20,-25,202" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Center" Grid.ColumnSpan="3" Width="175" Height="41" FontWeight="Bold"/>
+        <Label x:Name="label" Content="Pecina, Souček, Špetlík" HorizontalAlignment="Left" Height="30" Margin="10,228,0,0" Grid.Row="2" VerticalAlignment="Top" Width="146" Grid.ColumnSpan="3" Foreground="White" FontFamily="Times New Roman" FontSize="14"/>
+        <DataGrid x:Name="dataGrid"  EnableColumnVirtualization="False" EnableRowVirtualization="False" Margin="58,100,-675,9" Grid.Column="2" Grid.RowSpan="3" BorderBrush="{x:Null}" Width="674" Height="422" IsReadOnly="True" IsSynchronizedWithCurrentItem="False" Foreground="#FF340032" Background="White" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" FontWeight="Bold" FontSize="14">
+            <DataGrid.Effect>
+                <DropShadowEffect/>
+            </DataGrid.Effect>
+        </DataGrid>
         <Image x:Name="image_Copy2" Source="Oxygen-Icons.org-Oxygen-Apps-accessories-calculator.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,10,30,218" Grid.Row="2"/>
         <Image x:Name="image_Copy3" Source="Graphicloads-100-Flat-Reload.ico" RenderTransformOrigin="0.184,-1.359" Width="40" Height="40" Margin="10,62,30,166" Grid.Row="2"/>
-        <Label x:Name="lb_status_connect" Content="" Foreground="White" FontSize="15" HorizontalAlignment="Center" Margin="20,21,23,0" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="117" Height="35"/>
+        <Label x:Name="lb_status_connect" Content="" Foreground="Lime" FontSize="22" HorizontalAlignment="Center" Margin="580,20,-675,0" Padding="20,5,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="152" Height="65" Grid.Column="2" FontWeight="Bold"/>
 
 
 

@@ -517,6 +517,7 @@ namespace RepositoryModel
             {
                 MainWindow win = (MainWindow)System.Windows.Application.Current.MainWindow;
                 win.lb_status.Content = "Searching...";
+                win.lb_status.Foreground = Brushes.Yellow;
             }));
             //MainWindow win = (MainWindow)System.Windows.Application.Current.MainWindow;
             //win.lb_status.Content = "Searching...";
@@ -529,16 +530,17 @@ namespace RepositoryModel
 
             logger.Info("searching files");
             IDictionary<string, List<string[]>> filesExtensions = null;
-            try {
+            try
+            {
                 filesExtensions = ChangedFiles(new DateTime(searchingDateTime.Year, searchingDateTime.Month,
                 searchingDateTime.Day, searchingDateTime.Hour, searchingDateTime.Minute, searchingDateTime.Second)).Result;
-            }   
-            catch(AggregateException ex )
-            {
-                
-                
             }
-            
+            catch (AggregateException ex)
+            {
+
+
+            }
+
             //var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
             //currentDateTime = new DateTime(2016, 4, 19, 20, 22, 12);
 
@@ -563,10 +565,10 @@ namespace RepositoryModel
                     if (row == null)
                     {
                         win.dataGrid.UpdateLayout();
-                         
+
                         row = win.dataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                        
-                        
+
+
 
                     }
                     DateTime myDate = DateTime.ParseExact(item.datetime, "dd.MM.yyyy HH:mm:ss",
@@ -585,16 +587,20 @@ namespace RepositoryModel
                 }
                 //save to file 
                 logger.Info("save changes to file ");
-                try { 
-                Save.SaveDatagridContent(UserName + "_" + RepoName + ".txt", FilesChanges);
-                }
-                catch(NullReferenceException ex)
+                try
                 {
-                    System.Windows.MessageBox.Show("Connection shutdown during searching");  
+                    Save.SaveDatagridContent(UserName + "_" + RepoName + ".txt", FilesChanges);
                 }
-                win.lb_status.Content = "Finished";   
+                catch (NullReferenceException ex)
+                {
+                    System.Windows.MessageBox.Show("Connection shutdown during searching");
+                }
+                win.lb_status.Content = "Finished";
+                win.lb_status.Foreground = Brushes.Green;
+
             }));
             return DateTime.Now;
         }
-    }
+        }
+    
 }

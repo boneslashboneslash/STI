@@ -105,6 +105,10 @@ namespace Semestralka
             {
                 System.Windows.MessageBox.Show("No connection");
             }
+            else if (dataGrid.Items.Count == 0)
+            {
+                System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+            }
             else
             { 
             using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
@@ -126,6 +130,11 @@ namespace Semestralka
             {
                 System.Windows.MessageBox.Show("No connection");
             }
+            else if (dataGrid.Items.Count ==0)
+            {
+                System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+            }
+           
             else
             {
                 using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
@@ -191,6 +200,10 @@ namespace Semestralka
             {
                 ae.ToString();
             }
+            catch (NullReferenceException ea)
+            {
+                System.Windows.MessageBox.Show("Error, žádné Java soubory k nalezení");
+            }
         }
 
         private void button_graf_Click(object sender, RoutedEventArgs e)
@@ -198,6 +211,10 @@ namespace Semestralka
             if (!Connection.CheckConnection())
             {
                 System.Windows.MessageBox.Show("No connection");
+            }
+            else if (dataGrid.Items.Count == 0)
+            {
+                System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
             }
             else {
                 try { 

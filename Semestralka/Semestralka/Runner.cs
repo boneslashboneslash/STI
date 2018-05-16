@@ -140,6 +140,7 @@ namespace Semestralka
             Application.Current.Dispatcher.Invoke(new Action(() => {
                 MainWindow win = (MainWindow)Application.Current.MainWindow;
                 win.lb_status_connect.Content = (Connection.CheckConnection())?"Online":"Offline";
+                win.lb_status_connect.Foreground = win.lb_status_connect.Content.Equals("Online") ? Brushes.Green : Brushes.Red;
             }));
         }
     }

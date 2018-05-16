@@ -197,3 +197,12 @@
 2018-05-16 01:44:10.1598|INFO|RepositoryModel.RepositoryGetter|save changes to file 
 2018-05-16 01:45:29.1776|INFO|Semestralka.MainWindow|refresh_Click start
 2018-05-16 01:45:29.2306|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-16 02:00:41.9094|INFO|Semestralka.MainWindow|start
+2018-05-16 02:00:42.1409|INFO|Semestralka.Runner|new runner
+2018-05-16 02:00:58.0020|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-16 02:01:03.7196|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-16 02:01:03.7730|INFO|RepositoryModel.RepositoryGetter|searching files
+2018-05-16 02:01:47.3389|INFO|RepositoryModel.RepositoryGetter|save changes to file 
+2018-05-16 02:02:10.2139|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-16 02:02:10.2139|INFO|RepositoryModel.RepositoryGetter|load backup from file
+2018-05-16 02:02:10.2607|INFO|RepositoryModel.RepositoryGetter|searching files
