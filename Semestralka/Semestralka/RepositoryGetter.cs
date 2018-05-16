@@ -127,6 +127,7 @@ namespace RepositoryModel
             }
             catch
             {
+                System.Windows.MessageBox.Show("Error");
                 return false;
             }
             return true;
@@ -188,10 +189,10 @@ namespace RepositoryModel
 
             // Latest commit is first in list commits
             var commits = repositoryCommits().Result;
-
             // Loop thourgh all commits
             foreach (var currentCommit in commits)
             {
+                
                 // Commit detail
                 var commit = client.Repository.Commit.Get(UserName, RepoName, currentCommit.Sha);
 

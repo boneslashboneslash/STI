@@ -21,7 +21,7 @@ namespace Semestralka
         {
             logger.Info("new runner");
             var dueTime = TimeSpan.FromSeconds(1);
-            var interval = TimeSpan.FromSeconds(40);
+            var interval = TimeSpan.FromSeconds(60);
 
             if (setActualDate == true)
             {
