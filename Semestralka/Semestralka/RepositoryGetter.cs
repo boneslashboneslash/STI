@@ -505,102 +505,12 @@ namespace RepositoryModel
             }
         }
 
-        //public async Task CheckRepository(Action<DateTime> checkingRepository, DateTime searchDateTime)
-        //{
-        //    checkingRepository?.Invoke(searchDateTime);
-        //}
-
-
-        public DateTime CheckingRepository(DateTime searchingDateTime)
-        {
-            System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                MainWindow win = (MainWindow)System.Windows.Application.Current.MainWindow;
-                win.lb_status.Content = "Searching...";
-                win.lb_status.Foreground = Brushes.Yellow;
-            }));
-            //MainWindow win = (MainWindow)System.Windows.Application.Current.MainWindow;
-            //win.lb_status.Content = "Searching...";
-            // load backup from file
-            if (FilesChanges.Count() == 0)
-            {
-                logger.Info("load backup from file");
-                loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(UserName + "_" + RepoName + ".txt"));
-            }
-
-            logger.Info("searching files");
-            IDictionary<string, List<string[]>> filesExtensions = null;
-            try
-            {
-                filesExtensions = ChangedFiles(new DateTime(searchingDateTime.Year, searchingDateTime.Month,
-                searchingDateTime.Day, searchingDateTime.Hour, searchingDateTime.Minute, searchingDateTime.Second)).Result;
-            }
-            catch (AggregateException ex)
-            {
-
-
-            }
-
-            //var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
-            //currentDateTime = new DateTime(2016, 4, 19, 20, 22, 12);
-
-
-            //win.dataGrid.ItemsSource = GitFile.convertor(filesExtensions);
-            System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                MainWindow win = (MainWindow)System.Windows.Application.Current.MainWindow;
-
-
-                try
-                {
-                    win.dataGrid.ItemsSource = GitFile.convertorToList(filesExtensions).OrderByDescending(x => x.datetime);
-                }
-                catch (NullReferenceException ex)
-                {
-
-                }
-                foreach (GitFile item in win.dataGrid.ItemsSource)
-                {
-                    var row = win.dataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                    if (row == null)
-                    {
-                        win.dataGrid.UpdateLayout();
-
-                        row = win.dataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+        
 
 
 
-                    }
-                    DateTime myDate = DateTime.ParseExact(item.datetime, "dd.MM.yyyy HH:mm:ss",
-                        System.Globalization.CultureInfo.InvariantCulture);
-                    if (myDate >= searchingDateTime)
-                    {
-                        try
-                        {
-                            row.Background = Brushes.GreenYellow;
-                        }
-                        catch
-                        {
-                            //nevim proc je row nekdy null
-                        }
-                    }
-                }
-                //save to file 
-                logger.Info("save changes to file ");
-                try
-                {
-                    Save.SaveDatagridContent(UserName + "_" + RepoName + ".txt", FilesChanges);
-                }
-                catch (NullReferenceException ex)
-                {
-                    System.Windows.MessageBox.Show("Connection shutdown during searching");
-                }
-                win.lb_status.Content = "Finished";
-                win.lb_status.Foreground = Brushes.Green;
 
-            }));
-            return DateTime.Now;
-        }
-        }
-    
+
+
+    }
 }

@@ -28,7 +28,6 @@ namespace Semestralka
     public partial class MainWindow : Window
     {
         private static RepositoryGetter getter;
-        private static DateTime searchingDateTime = new DateTime();
         private static Runner runner = null;
         private static readonly List<string> fileExt = new List<string>();
         SettingsHandler settingshandler = null;
@@ -37,7 +36,6 @@ namespace Semestralka
         public MainWindow()
         {
             InitializeComponent();
-            searchingDateTime = DateTime.Now;
             //Sets default properties rows from project settings
             settingshandler = new SettingsHandler(sp_settings);
 
@@ -57,8 +55,8 @@ namespace Semestralka
             logger.Info("start");
 
             //checking net status
-            runner = new Runner();
-            //GetterInit(settingshandler.getUrlTB());
+            indikacenetu();
+            GetterInit(settingshandler.getUrlTB());
 
             //int Desc;
             //if (!InternetGetConnectedState(out Desc, 0))
@@ -70,27 +68,24 @@ namespace Semestralka
             getter = RepositoryGetter.CreateNewRepositoryGetter(url);
             if (getter == null)
             {
-                System.Windows.MessageBox.Show("repository not found");
+                
+                System.Windows.MessageBox.Show("repository not found, If the connection is offline, please connect first!");
             }
             else
             {
-                //if(runner != null)
-                //{
-                //    runner.cts.Cancel();
-                //}
+                if (runner != null)
+                {
+                    runner.cts.Cancel();
+                }
                 try
                 {
-                    //searchingDateTime = DateTime.Now;
-                    Thread t = new Thread(() => searchingDateTime = getter.CheckingRepository(searchingDateTime));
-                    t.Start();
-                    //getter.CheckingRepository(searchingDateTime);
-                    //runner = new Runner(getter, true);
+                    runner = new Runner(getter, true);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     ex.ToString();
                 }
-                
+
             }
         }
         
@@ -101,11 +96,7 @@ namespace Semestralka
 
         private void button_export_Click(object sender, RoutedEventArgs e)
         {
-            if (!Connection.CheckConnection())
-            {
-                System.Windows.MessageBox.Show("No connection");
-            }
-            else if (dataGrid.Items.Count == 0)
+            if (dataGrid.Items.Count == 0)
             {
                 System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
             }
@@ -126,11 +117,7 @@ namespace Semestralka
         
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
-            if (!Connection.CheckConnection())
-            {
-                System.Windows.MessageBox.Show("No connection");
-            }
-            else if (dataGrid.Items.Count ==0)
+            if (dataGrid.Items.Count ==0)
             {
                 System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
             }
@@ -189,6 +176,7 @@ namespace Semestralka
             {
                 if (!Connection.CheckConnection())
                 {
+                    indikacenetu();
                     System.Windows.MessageBox.Show("No connection");
                 }
                 else
@@ -208,11 +196,7 @@ namespace Semestralka
 
         private void button_graf_Click(object sender, RoutedEventArgs e)
         {
-            if (!Connection.CheckConnection())
-            {
-                System.Windows.MessageBox.Show("No connection");
-            }
-            else if (dataGrid.Items.Count == 0)
+            if (dataGrid.Items.Count == 0)
             {
                 System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
             }
@@ -226,44 +210,35 @@ namespace Semestralka
                 }
                 }
         }
-
+        public void indikacenetu()
+            {
+            lb_status_connect.Content = (Connection.CheckConnection()) ? "Online" : "Offline";
+            lb_status_connect.Foreground = lb_status_connect.Content.Equals("Online") ? Brushes.Green : Brushes.Red;
+            }
         private void button_refresh_Click(object sender, RoutedEventArgs e)
         {
-            if (!Connection.CheckConnection())
-            {
-                System.Windows.MessageBox.Show("No connection");
-            }
-            else
-            {
-                if(getter == null)
+           
+            
+                if (runner != null)
+                {
+                    runner.cts.Cancel();
+                }
+
+                try
                 {
                     logger.Info("refresh_Click start");
-                    GetterInit(settingshandler.getUrlTB());
+                    lb_status.Content = "Searching...";
+                    runner = new Runner(getter, false);
+                    //searchingDateTime = DateTime.Now;                       
                 }
-                else
+                catch (Exception ex)
                 {
-                    //if (runner != null)
-                    //{
-                    //    runner.cts.Cancel();
-                    //}
-                    try
-                    {
-                        logger.Info("refresh_Click start");
-                        //runner = new Runner(getter, false);
-                        //getter.CheckRepository(getter.CheckingRepository,searchingDateTime);
-                        Thread t = new Thread(() => searchingDateTime = getter.CheckingRepository(searchingDateTime));
-                        t.Start();
-                        //getter.CheckingRepository(searchingDateTime);
-                        //set datetime for next search
-
-                        //searchingDateTime = DateTime.Now;                       
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.ToString();
-                    }
-                }                            
-            }
-        }
+                    ex.ToString();
+                }
+            
+                }
+                                            
+            
+        
     }
 }
