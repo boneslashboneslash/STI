@@ -569,3 +569,19 @@
 2018-05-16 17:49:16.7544|INFO|Semestralka.Runner|load backup from file
 2018-05-16 17:49:17.7090|INFO|Semestralka.Runner|searching files
 2018-05-16 17:51:25.3423|INFO|Semestralka.Runner|save changes to file 
+2018-05-16 18:02:59.1570|INFO|Semestralka.MainWindow|start
+2018-05-16 18:03:28.0698|INFO|Semestralka.Runner|new runner
+2018-05-16 18:03:28.1545|INFO|Semestralka.Runner|clear datagrid
+2018-05-16 18:03:30.7713|INFO|Semestralka.Runner|set actual date time
+2018-05-16 18:03:38.1185|INFO|Semestralka.Runner|load backup from file
+2018-05-16 18:03:38.1969|INFO|Semestralka.Runner|searching files
+2018-05-16 18:04:50.7809|INFO|Semestralka.Runner|save changes to file 
+2018-05-16 18:05:02.6753|INFO|Semestralka.MainWindow|refresh_Click start
+2018-05-16 18:05:03.0296|INFO|Semestralka.Runner|new runner
+2018-05-16 18:05:31.1749|INFO|Semestralka.Runner|searching files
+2018-05-16 18:08:32.4597|INFO|Semestralka.MainWindow|start
+2018-05-16 18:08:42.8122|INFO|Semestralka.Runner|new runner
+2018-05-16 18:08:42.8449|INFO|Semestralka.Runner|clear datagrid
+2018-05-16 18:08:46.2618|INFO|Semestralka.Runner|set actual date time
+2018-05-16 18:09:12.2638|INFO|Semestralka.Runner|load backup from file
+2018-05-16 18:09:15.5870|INFO|Semestralka.Runner|searching files

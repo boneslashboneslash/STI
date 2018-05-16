@@ -106,8 +106,28 @@ namespace Semestralka
             logger.Info("load backup from file");
             getter.loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(getter.UserName + "_" + getter.RepoName + ".txt"));
         }
-            
+                Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    MainWindow win = (MainWindow)Application.Current.MainWindow;
+                    win.lb_status_connect.Content = (Connection.CheckConnection()) ? "Online" : "Offline";
+                    win.lb_status_connect.Foreground = win.lb_status_connect.Content.Equals("Online") ? Brushes.Green : Brushes.Red;
+                    if (win.lb_status_connect.Content.ToString() == "Offline")
+                    {
+                        k = "Offline";
+                        win.lb_status.Content = "Finished";
+                    }
+                    
+                    else
+                      {
+                        k = "Online";
+
+                        win.lb_status.Content = "Searching...";
+                    }
+                }));
+                if(k=="Online")
+                { 
                 logger.Info("searching files");
+                
                 var filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month,
                     currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
 
@@ -143,11 +163,15 @@ namespace Semestralka
                     }
                         }
                     }
+
             //save to file 
             logger.Info("save changes to file ");
                     Save.SaveDatagridContent(getter.UserName + "_" + getter.RepoName + ".txt", getter.FilesChanges);
                     win.lb_status.Content = "Finished";
                 }));
+                }
+                
+
 
             }
     }
