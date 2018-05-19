@@ -56,6 +56,8 @@ namespace Semestralka
 
             //checking net status
             indikacenetu();
+            Connection.CheckingConnection();
+
             GetterInit(settingshandler.getUrlTB());
 
             //int Desc;

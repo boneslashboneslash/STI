@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Semestralka
 {
@@ -17,5 +19,26 @@ namespace Semestralka
             int Desc;
             return InternetGetConnectedState(out Desc, 0);
         }
+
+        public static void CheckingConnection()
+        {
+            Thread t = new Thread(() => OnTick());
+            t.Start();
+        }
+
+        private static void OnTick()
+        {
+            // Repeat this loop until cancelled.
+            while (true)
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() => {
+                    MainWindow win = (MainWindow)Application.Current.MainWindow;
+                    win.lb_status_connect.Content = (Connection.CheckConnection()) ? "Online" : "Offline";
+                }));
+                // Wait to repeat again.
+                Thread.Sleep(20);
+            }
+        }
+
     }
 }
