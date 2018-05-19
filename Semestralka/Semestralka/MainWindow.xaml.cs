@@ -68,7 +68,7 @@ namespace Semestralka
             getter = RepositoryGetter.CreateNewRepositoryGetter(url);
             if (getter == null)
             {
-                
+
                 System.Windows.MessageBox.Show("repository not found, If the connection is offline, please connect first!");
             }
             else
@@ -88,7 +88,7 @@ namespace Semestralka
 
             }
         }
-        
+
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -101,27 +101,27 @@ namespace Semestralka
                 System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
             }
             else
-            { 
-            using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
             {
-                //dialog.SelectedPath = settingshandler.getStorageTB();
-                System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-                if (result.ToString() == "OK")
+                using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
                 {
-                    Save.ExportFilesToExcel((dataGrid.ItemsSource != null) ? dataGrid.ItemsSource.Cast<GitFile>().ToList() : null, dialog.SelectedPath); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
-                    System.Windows.MessageBox.Show("Saved");
+                    //dialog.SelectedPath = settingshandler.getStorageTB();
+                    System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+                    if (result.ToString() == "OK")
+                    {
+                        Save.ExportFilesToExcel((dataGrid.ItemsSource != null) ? dataGrid.ItemsSource.Cast<GitFile>().ToList() : null, dialog.SelectedPath); //dataGrid.SelectedItems.Cast<GitFile>().ToList()
+                        System.Windows.MessageBox.Show("Saved");
+                    }
                 }
             }
-            }
         }
-        
+
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGrid.Items.Count ==0)
+            if (dataGrid.Items.Count == 0)
             {
                 System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
             }
-           
+
             else
             {
                 using (var dialog = new System.Windows.Forms.FolderBrowserDialog())
@@ -132,25 +132,25 @@ namespace Semestralka
                     {
                         settingshandler.setStorageTB(dialog.SelectedPath);
                         try
-                        { 
-                        getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
+                        {
+                            getter.SaveFile(settingshandler.getStorageTB(), GitFile.convertorToDict(dataGrid.SelectedItems.Cast<GitFile>().ToList(), getter.FilesChanges));
                             System.Windows.MessageBox.Show("Saved");
                         }
-                        catch(ArgumentNullException ex)
+                        catch (ArgumentNullException ex)
                         {
                             System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
                         }
-                        catch(NullReferenceException ex)
+                        catch (NullReferenceException ex)
                         {
                             System.Windows.MessageBox.Show("Chyba");
                         }
-                            
+
                     }
                 }
             }
 
-            
-            
+
+
 
             //// Configure save file dialog box
             //Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -200,45 +200,64 @@ namespace Semestralka
             {
                 System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
             }
-            else {
-                try { 
-            Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(),dataGrid.SelectedItems.Cast<GitFile>().ToList());
+            else
+            {
+                try
+                {
+                    Graph.drawFileChanges(dataGrid.ItemsSource.Cast<GitFile>().ToList(), dataGrid.SelectedItems.Cast<GitFile>().ToList());
                 }
-                catch(ArgumentNullException )
+                catch (ArgumentNullException)
                 {
                     System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
                 }
-                }
+            }
         }
         public void indikacenetu()
-            {
+        {
             lb_status_connect.Content = (Connection.CheckConnection()) ? "Online" : "Offline";
             lb_status_connect.Foreground = lb_status_connect.Content.Equals("Online") ? Brushes.Green : Brushes.Red;
-            }
+        }
         private void button_refresh_Click(object sender, RoutedEventArgs e)
         {
-           
-            
-                if (runner != null)
+            indikacenetu();
+            if (lb_status_connect.Content.Equals("Online"))
+            {
+                if (getter == null)
                 {
-                    runner.cts.Cancel();
+                    getter = RepositoryGetter.CreateNewRepositoryGetter(settingshandler.getUrlTB());
                 }
 
-                try
+                if (getter == null)
                 {
-                    logger.Info("refresh_Click start");
-                    lb_status.Content = "Searching...";
-                    runner = new Runner(getter, false);
-                    //searchingDateTime = DateTime.Now;                       
+                    System.Windows.MessageBox.Show("repository not found");
                 }
-                catch (Exception ex)
+                else
                 {
-                    ex.ToString();
-                }
-            
-                }
-                                            
-            
-        
+                    if (runner != null)
+                    {
+                        runner.cts.Cancel();
+                    }
+
+                    try
+                    {
+                        logger.Info("refresh_Click start");
+                        lb_status.Content = "Searching...";
+                        runner = new Runner(getter, false);
+                        //searchingDateTime = DateTime.Now;                       
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ToString();
+                    }
+                }               
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Please connect first!");
+            }
+        }
+
+
+
     }
 }
