@@ -102,6 +102,7 @@ namespace Semestralka
                     //Task.Run(() => CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter).Wait());
                     k = "Offline";
                     win.lb_status.Content = "Failed";                                                                                              //CheckingConnectionAsync(OnTick, dueTime, interval, CancellationToken.None);
+                    win.lb_status.Foreground = Brushes.Red;
                 }
                 else
                 {
@@ -128,6 +129,7 @@ namespace Semestralka
                     {
                         k = "Offline";
                         win.lb_status.Content = "Failed";
+                        win.lb_status.Foreground = Brushes.Red;
                     }
 
                     else
@@ -196,6 +198,7 @@ namespace Semestralka
                             logger.Info("save changes to file ");
                             Save.SaveDatagridContent(getter.UserName + "_" + getter.RepoName + ".txt", getter.FilesChanges);
                             win.lb_status.Content = "Finished";
+                            win.lb_status.Foreground = Brushes.Green;
                         }
                     }));
                 }
