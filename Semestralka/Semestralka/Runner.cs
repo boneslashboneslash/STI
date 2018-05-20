@@ -1,6 +1,7 @@
 ﻿using NLog;
 using RepositoryModel;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading;
@@ -21,7 +22,7 @@ namespace Semestralka
         {
             logger.Info("new runner");
             var dueTime = TimeSpan.FromSeconds(1);
-            var interval = TimeSpan.FromSeconds(60);
+            var interval = TimeSpan.FromSeconds(3600);
 
             if (setActualDate == true)
             {
@@ -32,8 +33,8 @@ namespace Semestralka
             //Task.Run(() => CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter).Wait());
             CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter, setActualDate);//CancellationToken.None
                                                                                                          //CheckingConnectionAsync(OnTick, dueTime, interval, CancellationToken.None);
-            
-            
+
+
 
         }
 
@@ -49,14 +50,26 @@ namespace Semestralka
                 logger.Info("set actual date time");
                 currentDateTime = DateTime.Now;
             }
-            
-            
-               
+
+
+
             // Repeat this loop until cancelled.
             while (!token.IsCancellationRequested)
             {
                 // Call our onTick function.
-                onTick?.Invoke(getter, currentDateTime);
+                //onTick?.Invoke(getter, currentDateTime);
+
+                Task task = Task.Factory.StartNew(() => onTick(getter, currentDateTime));
+                //task.Wait(TimeSpan.FromMinutes(1));
+                //if (!task.IsCompleted)
+                //{
+                //    Application.Current.Dispatcher.Invoke(new Action(() =>
+                //    {
+                //        MainWindow win = (MainWindow)Application.Current.MainWindow;
+                //        win.lb_status.Content = "failed";
+                //        win.lb_status_connect.Content = (Connection.CheckConnection()) ? "Online" : "Offline";
+                //    }));
+                //}
 
                 currentDateTime = DateTime.Now;
 
@@ -64,12 +77,12 @@ namespace Semestralka
                 if (interval > TimeSpan.Zero)
                     await Task.Delay(interval, token).ConfigureAwait(false);
             }
-            
-    
+
+
         }
 
-    private void OnTick(RepositoryGetter getter, DateTime currentDateTime)
-    {
+        private void OnTick(RepositoryGetter getter, DateTime currentDateTime)
+        {
 
 
             //Task.Run(() => CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter).Wait());
@@ -78,34 +91,35 @@ namespace Semestralka
 
 
 
-            var k= "";
-        Application.Current.Dispatcher.Invoke(new Action(() =>
-        {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-        win.lb_status_connect.Content = (Connection.CheckConnection()) ? "Online" : "Offline";
-        win.lb_status_connect.Foreground = win.lb_status_connect.Content.Equals("Online") ? Brushes.Green : Brushes.Red;
-            if (win.lb_status_connect.Content.ToString() == "Offline")
+            var k = "";
+            Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                //Task.Run(() => CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter).Wait());
-                k = "Offline";
-                win.lb_status.Content = "Finished";                                                                                              //CheckingConnectionAsync(OnTick, dueTime, interval, CancellationToken.None);
-            }
-            else
-            {
-                k = "Online";
+                MainWindow win = (MainWindow)Application.Current.MainWindow;
+                win.lb_status_connect.Content = (Connection.CheckConnection()) ? "Online" : "Offline";
+                win.lb_status_connect.Foreground = win.lb_status_connect.Content.Equals("Online") ? Brushes.Green : Brushes.Red;
+                if (win.lb_status_connect.Content.ToString() == "Offline")
+                {
+                    //Task.Run(() => CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter).Wait());
+                    k = "Offline";
+                    win.lb_status.Content = "Failed";                                                                                              //CheckingConnectionAsync(OnTick, dueTime, interval, CancellationToken.None);
+                    win.lb_status.Foreground = Brushes.Red;
+                }
+                else
+                {
+                    k = "Online";
 
-                win.lb_status.Content = "Searching...";
-            }
-        }));
+                    win.lb_status.Content = "Searching...";
+                }
+            }));
 
             // load backup from file
             if (k == "Online")
             {
                 if (getter.FilesChanges.Count() == 0)
-        {
-            logger.Info("load backup from file");
-            getter.loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(getter.UserName + "_" + getter.RepoName + ".txt"));
-        }
+                {
+                    logger.Info("load backup from file");
+                    getter.loadNewFilesChangesFromListString(Save.LoadBackupContentFromFile(getter.UserName + "_" + getter.RepoName + ".txt"));
+                }
                 Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
                     MainWindow win = (MainWindow)Application.Current.MainWindow;
@@ -114,68 +128,86 @@ namespace Semestralka
                     if (win.lb_status_connect.Content.ToString() == "Offline")
                     {
                         k = "Offline";
-                        win.lb_status.Content = "Finished";
+                        win.lb_status.Content = "Failed";
+                        win.lb_status.Foreground = Brushes.Red;
                     }
-                    
+
                     else
-                      {
+                    {
                         k = "Online";
 
                         win.lb_status.Content = "Searching...";
                     }
                 }));
-                if(k=="Online")
-                { 
-                logger.Info("searching files");
-                
-                var filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month,
-                    currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
-
-                //var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
-                //currentDateTime = new DateTime(2016, 4, 19, 20, 22, 12);
-
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                if (k == "Online")
                 {
-
-                    MainWindow win = (MainWindow)Application.Current.MainWindow;
-            //win.dataGrid.ItemsSource = GitFile.convertor(filesExtensions);
-            win.dataGrid.ItemsSource = GitFile.convertorToList(filesExtensions).OrderByDescending(x => x.datetime);
-
-                    foreach (GitFile item in win.dataGrid.ItemsSource)
+                    logger.Info("searching files");
+                    IDictionary<string, List<string[]>> filesExtensions = new Dictionary<string, List<string[]>>();
+                    try
                     {
-                        var row = win.dataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                        if (row == null)
-                        {
-                            win.dataGrid.UpdateLayout();
-                            row = win.dataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                        }
-                        DateTime myDate = DateTime.ParseExact(item.datetime, "dd.MM.yyyy HH:mm:ss",
-                            System.Globalization.CultureInfo.InvariantCulture);
-                        if (myDate >= currentDateTime)
-                        {
-                            try
-                            {
-                                row.Background = Brushes.GreenYellow;
-                            }
-                            catch
-                            {
-                        //nevim proc je row nekdy null
+                        filesExtensions = getter.ChangedFiles(new DateTime(currentDateTime.Year, currentDateTime.Month,
+                        currentDateTime.Day, currentDateTime.Hour, currentDateTime.Minute, currentDateTime.Second)).Result;
                     }
-                        }
+                    catch (Exception ex)
+                    {
+                        Application.Current.Dispatcher.Invoke(new Action(() =>
+                        {
+                            MainWindow win = (MainWindow)Application.Current.MainWindow;
+                            win.lb_status.Content = "Failed";
+                            win.lb_status_connect.Content = (Connection.CheckConnection()) ? "Online" : "Offline";
+                        }));
                     }
 
-            //save to file 
-            logger.Info("save changes to file ");
-                    Save.SaveDatagridContent(getter.UserName + "_" + getter.RepoName + ".txt", getter.FilesChanges);
-                    win.lb_status.Content = "Finished";
-                }));
+
+                    //var filesExtensions = getter.ChangedFiles(new DateTime(2016, 4, 19, 20, 22, 12)).Result;
+                    //currentDateTime = new DateTime(2016, 4, 19, 20, 22, 12);
+
+                    Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+
+                        MainWindow win = (MainWindow)Application.Current.MainWindow;
+                        if (win.lb_status.Content != "Failed")
+                        {
+                            //win.dataGrid.ItemsSource = GitFile.convertor(filesExtensions);
+                            win.dataGrid.ItemsSource = GitFile.convertorToList(filesExtensions).OrderByDescending(x => x.datetime);
+
+                            foreach (GitFile item in win.dataGrid.ItemsSource)
+                            {
+                                var row = win.dataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                                if (row == null)
+                                {
+                                    win.dataGrid.UpdateLayout();
+                                    row = win.dataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                                }
+                                DateTime myDate = DateTime.ParseExact(item.datetime, "dd.MM.yyyy HH:mm:ss",
+                                    System.Globalization.CultureInfo.InvariantCulture);
+                                if (myDate >= currentDateTime)
+                                {
+                                    try
+                                    {
+                                        row.Background = Brushes.GreenYellow;
+                                    }
+                                    catch
+                                    {
+                                        //nevim proc je row nekdy null
+                                    }
+                                }
+                            }
+
+                            //save to file 
+                            logger.Info("save changes to file ");
+                            Save.SaveDatagridContent(getter.UserName + "_" + getter.RepoName + ".txt", getter.FilesChanges);
+                            win.lb_status.Content = "Finished";
+                            win.lb_status.Foreground = Brushes.Green;
+                        }
+                    }));
                 }
-                
+
 
 
             }
-    }
+        }
 
-        
+
     }
 }

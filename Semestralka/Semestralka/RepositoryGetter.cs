@@ -125,9 +125,13 @@ namespace RepositoryModel
             {
                 repository = await client.Repository.Get(UserName, RepoName).ConfigureAwait(false);
             }
+            catch (RateLimitExceededException e)
+            {
+                MessageBox.Show(e.Message);
+            }
             catch
             {
-                System.Windows.MessageBox.Show("Error");
+                System.Windows.MessageBox.Show("Repository not found");
                 return false;
             }
             return true;
@@ -186,16 +190,13 @@ namespace RepositoryModel
          */
         public async Task<IDictionary<string, List<string[]>>> ChangedFiles(DateTime date)
         {
-
             // Latest commit is first in list commits
             var commits = repositoryCommits().Result;
             // Loop thourgh all commits
             foreach (var currentCommit in commits)
             {
-                
                 // Commit detail
                 var commit = client.Repository.Commit.Get(UserName, RepoName, currentCommit.Sha);
-
                 // Commit after date (method parameter)
                 if (DateTimeOffset.Compare(commit.Result.Commit.Author.Date, new DateTimeOffset(date)) > 0)
                 {
@@ -448,7 +449,7 @@ namespace RepositoryModel
          */
         public async Task Authentication()
         {
-            var basicAuth = new Credentials("stiapp", "pecinasoučekšpetlík");
+            var basicAuth = new Credentials("martinspetlik", "359k4uaN");
             client.Credentials = basicAuth;
         }
 
