@@ -129,7 +129,6 @@ C:\Users\Martin1\STI\Semestralka\Semestralka\bin\Release\LiveCharts.Wpf.pdb
 C:\Users\Martin1\STI\Semestralka\Semestralka\bin\Release\LiveCharts.Wpf.xml
 C:\Users\Martin1\STI\Semestralka\Semestralka\bin\Release\NLog.xml
 C:\Users\Martin1\STI\Semestralka\Semestralka\bin\Release\Octokit.xml
-C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.csprojResolveAssemblyReference.cache
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\MainWindow.g.cs
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\App.g.cs
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka_Content.g.cs
@@ -144,3 +143,4 @@ C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.csproj.Core
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.csproj.CopyComplete
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.exe
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.pdb
+C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.csprojResolveAssemblyReference.cache

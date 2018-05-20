@@ -165,7 +165,6 @@ namespace Semestralka
             catch
             {
                 textBox.Text = "";
-                MessageBox.Show("Error url!");
             }
             Semestralka.Properties.Settings.Default.Save();
         }

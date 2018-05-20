@@ -70,8 +70,7 @@ namespace Semestralka
             getter = RepositoryGetter.CreateNewRepositoryGetter(url);
             if (getter == null)
             {
-
-                System.Windows.MessageBox.Show("repository not found, If the connection is offline, please connect first!");
+                
             }
             else
             {
@@ -100,7 +99,7 @@ namespace Semestralka
         {
             if (dataGrid.Items.Count == 0)
             {
-                System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+                System.Windows.MessageBox.Show("No data available");
             }
             else
             {
@@ -125,10 +124,10 @@ namespace Semestralka
                 System.Windows.MessageBox.Show("No internet connection, please connect first");
             }
             else
-            { 
+            {
                 if (dataGrid.Items.Count == 0)
                 {
-                    System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+                    System.Windows.MessageBox.Show("No data available");
                 }
 
                 else
@@ -147,20 +146,18 @@ namespace Semestralka
                             }
                             catch (ArgumentNullException ex)
                             {
-                                System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+                                System.Windows.MessageBox.Show("No data available");
                             }
                             catch (NullReferenceException ex)
                             {
-                                System.Windows.MessageBox.Show("Chyba");
+                                System.Windows.MessageBox.Show("Error");
                             }
 
                         }
                     }
                 }
             }
-
-
-
+ 
 
             //// Configure save file dialog box
             //Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -182,17 +179,25 @@ namespace Semestralka
 
         private void button_count_Click(object sender, RoutedEventArgs e)
         {
+
             try
             {
-                if (!Connection.CheckConnection())
+            if (!Connection.CheckConnection())
+            {
+                indikacenetu();
+                System.Windows.MessageBox.Show("No internet connection, please connect first");
+            }
+            else
+            {
+                if (getter == null)
                 {
-                    indikacenetu();
-                    System.Windows.MessageBox.Show("No connection");
+                    System.Windows.MessageBox.Show("Repository not found, If the connection is offline, please connect first!");
                 }
                 else
                 {
                     System.Windows.MessageBox.Show("Count rows from java files: " + getter.FileExtensionsLinesNumber().Result["java"]);
                 }
+            }
             }
             catch (AggregateException ae)
             {
@@ -200,7 +205,7 @@ namespace Semestralka
             }
             catch (NullReferenceException ea)
             {
-                System.Windows.MessageBox.Show("Error, žádné Java soubory k nalezení");
+                System.Windows.MessageBox.Show("Error, no java files found");
             }
         }
 
@@ -208,7 +213,7 @@ namespace Semestralka
         {
             if (dataGrid.Items.Count == 0)
             {
-                System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+                System.Windows.MessageBox.Show("No data available");
             }
             else
             {
@@ -218,7 +223,7 @@ namespace Semestralka
                 }
                 catch (ArgumentNullException)
                 {
-                    System.Windows.MessageBox.Show("Nejsou k dispozici žádná data");
+                    System.Windows.MessageBox.Show("No data available");
                 }
             }
         }
@@ -239,7 +244,7 @@ namespace Semestralka
 
                 if (getter == null)
                 {
-                    System.Windows.MessageBox.Show("repository not found");
+                    //System.Windows.MessageBox.Show("repository not found");
                 }
                 else
                 {
@@ -263,7 +268,7 @@ namespace Semestralka
             }
             else
             {
-                System.Windows.MessageBox.Show("Please connect first!");
+                System.Windows.MessageBox.Show("No internet connection, please connect first");
             }
         }
 

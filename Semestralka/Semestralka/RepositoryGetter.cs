@@ -16,6 +16,7 @@ using System.Threading;
 using NLog;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Text.RegularExpressions;
 
 namespace RepositoryModel
 {
@@ -61,6 +62,11 @@ namespace RepositoryModel
         {
             // Getting user name and repository name from github url
             var userNameRepositoryName = RepositoryGetter.parseUrl(url);
+            if (userNameRepositoryName == null)
+            {
+                MessageBox.Show("Error url! The URL format must be 'https://github.com/user/repository'");
+                return null;
+            }
             // Create new repository getter
             RepositoryGetter getter = new RepositoryGetter(userNameRepositoryName.Item1, userNameRepositoryName.Item2);
             // Authetification for 5000 request per hour
@@ -71,7 +77,13 @@ namespace RepositoryModel
 
             // Check if repository exists, it is not part of contructor, if repository is changed make sure that this method is called
             var repositoryExists = getter.CheckRepository().Result;
-            return !repositoryExists ? null : getter;
+
+            if (!repositoryExists) {
+                MessageBox.Show("Repository not found, If the connection is offline, please connect first!");
+                return null;
+            }
+
+            return getter;
         }
 
         /**
@@ -81,27 +93,38 @@ namespace RepositoryModel
          */
         public static Tuple<string, string> parseUrl(string url)
         {
-            Uri uri = new Uri(url);
-            // Repository id is user name and repository name
-            var ids = new List<string>();
-            // Url segments, split by '/'
-            var segments = uri.Segments.ToList();
-            foreach (var st in segments)
+            try { 
+                var regex = new Regex(@"https://github.com/.*/.*");
+                if (!regex.Match(url).Success)
+                {
+                    return null;
+                }
+ 
+                Uri uri = new Uri(url);
+                // Repository id is user name and repository name
+                var ids = new List<string>();
+                // Url segments, split by '/'
+                var segments = uri.Segments.ToList();
+                foreach (var st in segments)
+                {
+                    // Skip items first items with just '/'
+                    if (st.Length > 1)
+                    {
+                        ids.Add(st);
+                    }
+                    // First two items are used
+                    if (ids.Count == 2)
+                    {
+                        break;
+                    }
+                }
+                return ids.Count != 2 ? Tuple.Create("", "") : Tuple.Create(ids[0].TrimEnd('/'), ids[1].TrimEnd('/'));
+                // Tuple (user name, repository name)
+            } catch(Exception e)
             {
-                // Skip items first items with just '/'
-                if (st.Length > 1)
-                {
-                    ids.Add(st);
-                }
-                // First two items are used
-                if (ids.Count == 2)
-                {
-                    break;
-                }
-            }
-
-            return ids.Count != 2 ? Tuple.Create("", "") : Tuple.Create(ids[0].TrimEnd('/'), ids[1].TrimEnd('/'));
-            // Tuple (user name, repository name)
+                MessageBox.Show("An error ocurred during URL processing");
+                return null;
+            }      
         }
 
         /**
@@ -131,7 +154,7 @@ namespace RepositoryModel
             }
             catch
             {
-                System.Windows.MessageBox.Show("Repository not found");
+                //System.Windows.MessageBox.Show("Repository not found");
                 return false;
             }
             return true;
@@ -163,24 +186,35 @@ namespace RepositoryModel
         public async Task<IDictionary<string, int>> FileExtensionsLinesNumber()
         {
             ExtensionsLines = new Dictionary<string, int>();
-            // Loop through all repository files (as path)
-            foreach (var path in repositoryFilePaths().Result)
+            ExtensionsLines["java"] = 0;
+            try
             {
-                // Get file extension (suffix)
-                var ext = getFileExtension(path);
-                // Add suffix to list of all extensions and add number of lines for selected path
-                if (FileExtensions.Contains(ext))
+                // Loop through all repository files (as path)
+                foreach (var path in repositoryFilePaths().Result)
                 {
-                    if (ExtensionsLines.ContainsKey(ext))
-                    {
-                        ExtensionsLines[ext] += FileLineNumber(path);
-                    }
-                    else
-                    {
-                        ExtensionsLines.Add(ext, FileLineNumber(path));
+                    //MessageBox.Show(path);
+                    // Get file extension (suffix)
+                    var ext = getFileExtension(path);
+                    
+                    // Add suffix to list of all extensions and add number of lines for selected path
+                    if (FileExtensions.Contains(ext))
+                    { 
+                        if (ExtensionsLines.ContainsKey(ext))
+                        {
+                            ExtensionsLines[ext] += FileLineNumber(path);
+                        }
+                        else
+                        {
+                            ExtensionsLines.Add(ext, FileLineNumber(path));
+                        }
                     }
                 }
             }
+            catch 
+            {
+                MessageBox.Show("An Error occurred during lines counting");
+            }
+
             return ExtensionsLines;
         }
 
