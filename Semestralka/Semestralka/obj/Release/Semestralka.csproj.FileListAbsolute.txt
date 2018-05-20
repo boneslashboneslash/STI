@@ -144,3 +144,7 @@ C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.csproj.Copy
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.exe
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.pdb
 C:\Users\Martin1\STI\Semestralka\Semestralka\obj\Release\Semestralka.csprojResolveAssemblyReference.cache
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\NLog.config
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\NLog.dll
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\bin\Release\NLog.xml
+C:\TUL\STI\sti_projekt\Semestralka\Semestralka\obj\Release\Semestralka_Content.g.cs

@@ -31,7 +31,7 @@ namespace Semestralka
                 win.dataGrid.ItemsSource = null;
             }
             //Task.Run(() => CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter).Wait());
-            CheckingRepositoryPeriodicAsync(OnTick, dueTime, interval, cts.Token, getter, setActualDate);//CancellationToken.None
+            CheckingRepositoryPeriodicAsync(dueTime, interval, cts.Token, getter, setActualDate);//CancellationToken.None
                                                                                                          //CheckingConnectionAsync(OnTick, dueTime, interval, CancellationToken.None);
 
 
@@ -39,7 +39,7 @@ namespace Semestralka
         }
 
         // The `onTick` method will be called periodically unless cancelled.
-        private static async Task CheckingRepositoryPeriodicAsync(Action<RepositoryGetter, DateTime> onTick, TimeSpan dueTime, TimeSpan interval, CancellationToken token, RepositoryGetter getter, bool setActualDate)
+        private static async Task CheckingRepositoryPeriodicAsync(TimeSpan dueTime, TimeSpan interval, CancellationToken token, RepositoryGetter getter, bool setActualDate)
         {
             // Initial wait time before we begin the periodic loop.
             if (dueTime > TimeSpan.Zero)
@@ -59,7 +59,8 @@ namespace Semestralka
                 // Call our onTick function.
                 //onTick?.Invoke(getter, currentDateTime);
 
-                Task task = Task.Factory.StartNew(() => onTick(getter, currentDateTime));
+                Task<DateTime> task = Task<DateTime>.Factory.StartNew(() => OnTick(getter, currentDateTime));
+                currentDateTime = task.Result;
                 //task.Wait(TimeSpan.FromMinutes(1));
                 //if (!task.IsCompleted)
                 //{
@@ -71,7 +72,7 @@ namespace Semestralka
                 //    }));
                 //}
 
-                currentDateTime = DateTime.Now;
+                
 
                 // Wait to repeat again.
                 if (interval > TimeSpan.Zero)
@@ -81,7 +82,7 @@ namespace Semestralka
 
         }
 
-        private void OnTick(RepositoryGetter getter, DateTime currentDateTime)
+        private static DateTime OnTick(RepositoryGetter getter, DateTime currentDateTime)
         {
 
 
@@ -199,13 +200,14 @@ namespace Semestralka
                             Save.SaveDatagridContent(getter.UserName + "_" + getter.RepoName + ".txt", getter.FilesChanges);
                             win.lb_status.Content = "Finished";
                             win.lb_status.Foreground = Brushes.Green;
+                            //nastaveni noveho casu od ktereho se bude hledat priste
+                            currentDateTime = DateTime.Now;
                         }
                     }));
                 }
-
-
-
             }
+            return currentDateTime;
+
         }
 
 
