@@ -449,7 +449,7 @@ namespace RepositoryModel
          */
         public async Task Authentication()
         {
-            var basicAuth = new Credentials("martinspetlik", "359k4uaN");
+            var basicAuth = new Credentials("stiapp", "pecinasouèekšpetlík");
             client.Credentials = basicAuth;
         }
 
